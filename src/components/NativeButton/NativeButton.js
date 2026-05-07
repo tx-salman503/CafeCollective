@@ -1,0 +1,66 @@
+import React from 'react';
+import { TouchableOpacity, View, Text, Image } from 'react-native';
+import PropTypes from 'prop-types';
+import styles from './NativeButtonStyles';
+import { Theme } from '../../libs';
+import AppLoader from '../AppLoader/Apploader';
+import { AppFont } from '../../libs/responsive';
+
+const NativeButton = ({
+  onPress = () => { },
+  title,
+  title2,
+  containerStyle = {},
+  titleStyle = {},
+  title2Style,
+  disabled = false,
+  LeftIcon,
+  AlbumIcon,
+  isPending
+}) => {
+  return (
+    <TouchableOpacity
+      activeOpacity={0.6}
+      disabled={disabled}
+      style={[styles.button, containerStyle]}
+      onPress={onPress}>
+      <View style={styles.titlswrap}>
+        {LeftIcon && (
+          <Image
+            source={LeftIcon}
+            style={styles.notificationBtn}
+            resizeMode="contain"
+          />
+        )}
+        {AlbumIcon && (
+          <AlbumIcon
+            color={Theme.colors.darkBlue}
+            size={AppFont.commonFont.medium}
+            disabled={true}
+          />
+        )}
+        {isPending === true ? (
+          <AppLoader />
+        ) : (
+          <Text style={[styles.buttonText, titleStyle]}>{title}</Text>
+        )}
+
+        {title2 && (
+          <View style={styles.title2Wrap}>
+            <Text style={[styles.buttonText, title2Style]}>{title2}</Text>
+          </View>
+        )}
+      </View>
+    </TouchableOpacity>
+  );
+};
+
+export default NativeButton;
+
+NativeButton.propTypes = {
+  onPress: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  containerStyle: PropTypes.object,
+  titleStyle: PropTypes.object,
+  disabled: PropTypes.bool,
+};

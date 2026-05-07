@@ -1,0 +1,87 @@
+import { StyleSheet } from "react-native";
+import { moderateScale } from "react-native-size-matters";
+import { Responsive, Theme } from "../../../libs";
+const { AppFonts } = Responsive;
+
+export const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        paddingHorizontal:moderateScale(15),
+        paddingTop:moderateScale(20),
+        
+    },
+    imgContainer:{
+alignItems:'center',
+    },
+    img:{
+        width:moderateScale(53),
+        height:moderateScale(53),
+        borderRadius:moderateScale(26.5),
+    },
+    name:{
+        fontSize:AppFonts.t3,
+        fontFamily:Theme.fontFamily.poppinsSemiBold,
+    },
+    pupelTag:{
+        backgroundColor:Theme.colors.lightPurple,
+       paddingHorizontal:moderateScale(8),
+       borderWidth:moderateScale(1),
+         borderColor:Theme.colors.DarkPurple,
+         borderRadius:moderateScale(6),
+         justifyContent:"center",
+            alignItems:"center",
+    },
+    purpelText:{
+        fontSize:AppFonts.t1,
+        fontFamily:Theme.fontFamily.poppinsMedium,
+        color:Theme.colors.DarkPurple,
+        top:moderateScale(1),
+    },
+    WarningTag:{
+        backgroundColor:Theme.colors.likghtWarining,
+       paddingHorizontal:moderateScale(8),
+       borderWidth:moderateScale(1),
+         borderColor:Theme.colors.darkWarining,
+         borderRadius:moderateScale(16),
+            borderRadius:moderateScale(6),
+         justifyContent:"center",
+            alignItems:"center",
+    },
+    WanrningText:{
+        fontSize:AppFonts.t1,
+        fontFamily:Theme.fontFamily.poppinsMedium,
+        color:Theme.colors.darkWarining,
+        top:moderateScale(1),
+    },
+    GreenTag:{
+        backgroundColor:Theme.colors.lightgreen,
+       paddingHorizontal:moderateScale(8),
+       borderWidth:moderateScale(1),
+         borderColor:Theme.colors.darkgreen,
+         borderRadius:moderateScale(16),
+            borderRadius:moderateScale(6),
+         justifyContent:"center",
+            alignItems:"center",
+    },
+    GreenText:{
+        fontSize:AppFonts.t1,
+        fontFamily:Theme.fontFamily.poppinsMedium,
+        color:Theme.colors.darkgreen,
+       top:moderateScale(1),
+    },
+    row:{
+        flexDirection:'row',
+        gap:moderateScale(8),
+    },
+    title:{
+        fontSize:AppFonts.h6,
+        fontFamily:Theme.fontFamily.poppinsSemiBold,
+        color:Theme.colors.black,
+        marginTop:moderateScale(24),
+    },
+    detail:{
+        fontSize:AppFonts.t3,
+        fontFamily:Theme.fontFamily.poppinsMedium,
+        color:Theme.colors.gray,
+    }
+});

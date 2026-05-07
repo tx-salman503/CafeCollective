@@ -1,0 +1,254 @@
+{
+  "Onboarding": {
+    "title1": "Découvrez qui skie à proximité",
+    "title2": "Créez et rejoignez des rencontres instantanément",
+    "subtitle1": "Trouvez d'autres skieurs et snowboarders en temps réel sur les pistes",
+    "subtitle2": "Organisez des sessions de groupe ou rejoignez d'autres personnes pour une journée épique à la montagne."
+  },
+  "Login": {
+    "title": "Connexion",
+    "subtitle": "Entrez vos informations pour accéder à votre compte.",
+    "forgotPassword": "Mot de passe oublié ?",
+    "dontHaveAccount": "Vous n'avez pas de compte ?",
+    "signup": "S'inscrire",
+    "orContinueWith": "Ou continuer avec",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Entrez votre e-mail",
+    "passwordLabel": "Mot de passe",
+    "passwordPlaceholder": "Entrez votre mot de passe",
+    "buttonTitle": "Se connecter"
+  },
+  "Signup": {
+    "title": "Inscription",
+    "subtitle": "Entrez vos informations pour accéder à votre compte.",
+    "alreadyHaveAccount": "Vous avez déjà un compte ?",
+    "login": "Connexion",
+    "orContinueWith": "Ou continuer avec",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Entrez votre e-mail",
+    "passwordLabel": "Mot de passe",
+    "passwordPlaceholder": "Entrez votre mot de passe",
+    "buttonTitle": "S'inscrire",
+    "nameLabel": "Nom complet",
+    "namePlaceholder": "Entrez votre nom complet",
+    "ConfirmPasswordLabel": "Confirmer le mot de passe",
+    "ConfirmPasswordPlaceholder": "Entrez à nouveau le mot de passe"
+  },
+  "ForgetPassword": {
+    "title": "Mot de passe oublié",
+    "subtitle": "Nous enverrons un code OTP à votre adresse e-mail enregistrée",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Entrez votre e-mail",
+    "buttonTitle": "Envoyer l'OTP"
+  },
+  "VerifyOtp": {
+    "title": "Vérifier l'OTP",
+    "subtitlePrefix": "Nous avons envoyé un OTP à ",
+    "resendPrompt": "Vous n'avez pas reçu l'OTP ?",
+    "resendButton": "Renvoyer l'OTP",
+    "verifyButton": "Vérifier"
+  },
+  "SetupProfile": {
+    "title": "Configurez votre profil",
+    "subtitle": "Parlez-nous un peu de vous.",
+    "addProfilePhoto": "Ajouter une photo de profil",
+    "fullNameLabel": "Nom complet",
+    "fullNamePlaceholder": "Entrez le nom complet",
+    "skillLevel": "Niveau de compétence",
+    "beginner": "Débutant",
+    "intermediate": "Intermédiaire",
+    "advanced": "Avancé",
+    "iPrefer": "Je préfère",
+    "skiing": "Ski",
+    "snowboarding": "Snowboard",
+    "language": "Langue",
+    "selectLanguage": "Sélectionner la langue",
+    "addBioLabel": "Ajouter une bio",
+    "addBioPlaceholder": "Ajouter une bio",
+    "save": "Enregistrer"
+  },
+  "Meetup": {
+    "title": "Rencontres à venir",
+    "searchPlaceholder": "Rechercher",
+    "morningPowderRun": "Sortie poudreuse du matin",
+    "morningPowderRunDetail": "Je cherche des skieurs pour m'accompagner aux premières remontées du matin. Poudreuse fraîche attendue !"
+  },
+  "Profiles": {
+    "editProfile": "Modifier le profil",
+    "updateProfile": "Mettre à jour le profil",
+    "visibilityOnMap": "Visibilité sur la carte",
+    "privacyPolicy": "Politique de confidentialité",
+    "language": "Langue",
+    "helpCenter": "Centre d'aide",
+    "deleteAccount": "Supprimer le compte",
+    "logout": "Déconnexion"
+  },
+  "HelpCenter": {
+    "customerService": "Service client",
+    "whatsapp": "WhatsApp",
+    "website": "Site web"
+  },
+  "HostEvent": {
+    "morningPowderRun": "Sortie poudreuse du matin",
+    "morningPowderRunDetail": "Je cherche des skieurs pour m'accompagner aux premières remontées du matin. Poudreuse fraîche attendue !"
+  },
+  "MeetupDetails": {
+    "title": "Détails de la rencontre",
+    "morningPowderRun": "Sortie poudreuse du matin",
+    "hostedByAlex": "Organisé par Alex",
+    "time": "Heure",
+    "participants": "Participants",
+    "location": "Lieu",
+    "description": "Description",
+    "descriptionText": "Je cherche des skieurs pour m'accompagner aux premières remontées du matin. Poudreuse fraîche attendue !",
+    "askToJoin": "Demander à rejoindre la rencontre"
+  },
+  "CreateMeetup": {
+    "title": "Créer une rencontre",
+    "meetupTitle": "Titre de la rencontre",
+    "enterFullName": "Entrez le nom complet",
+    "hostedBy": "Organisé par",
+    "enterHostName": "Entrez le nom de l'hôte",
+    "date": "Date",
+    "dateFormat": "jj-mm-aaaa",
+    "startTime": "Heure de début",
+    "timePlaceholder": "Heure",
+    "location": "Lieu",
+    "enterLocation": "Entrez votre localisation",
+    "valleySelect": "Sélection de la vallée",
+    "tag": "Tag",
+    "skillLevel": "Niveau de compétence",
+    "descriptionLabel": "Description (optionnelle)",
+    "descriptionPlaceholder": "Partagez les détails de la rencontre...",
+    "createButton": "Créer la rencontre"
+  },
+  "ProfileScreen": {
+    "title": "Profil",
+    "userName": "John Doe",
+    "preference": "Préférence",
+    "logoutTitle": "Déconnexion",
+    "logoutDescription": "Êtes-vous sûr de vouloir vous déconnecter ?",
+    "logoutConfirm": "Oui, se déconnecter",
+    "deleteAccountTitle": "Supprimer le compte",
+    "deleteAccountDescription": "Êtes-vous sûr de vouloir supprimer votre compte ?",
+    "deleteAccountConfirm": "Oui, supprimer"
+  },
+  "EditProfile": {
+    "title": "Modifier le profil",
+    "nameLabel": "Nom",
+    "nameValue": "Mon nom est Salman",
+    "emailLabel": "E-mail",
+    "emailValue": "xyz@gmail.com",
+    "passwordLabel": "Mot de passe",
+    "passwordValue": "********",
+    "bioLabel": "Modifier la bio",
+    "bioValue": "J'adore skier avec des amis et explorer"
+  },
+  "EditName": {
+    "title": "Modifier le nom",
+    "label": "Nom complet",
+    "saveButton": "Enregistrer"
+  },
+  "EditBio": {
+    "title": "Modifier la bio",
+    "label": "Bio",
+    "placeholder": "Entrez votre bio",
+    "updateButton": "Mettre à jour"
+  },
+  "UpdatePassword": {
+    "title": "Modifier le mot de passe",
+    "oldPasswordLabel": "Ancien mot de passe",
+    "oldPasswordPlaceholder": "Entrez votre ancien mot de passe",
+    "newPasswordLabel": "Nouveau mot de passe",
+    "newPasswordPlaceholder": "Entrez votre nouveau mot de passe",
+    "confirmPasswordLabel": "Confirmer le mot de passe",
+    "confirmPasswordPlaceholder": "Confirmez votre mot de passe",
+    "updateButton": "Mettre à jour"
+  },
+  "PrivacyPolicy": {
+    "title": "Politique de confidentialité",
+    "content1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "content2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "content3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "content4": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  "HelpCenterScreen": {
+    "title": "Centre d'aide",
+    "faqTab": "FAQ",
+    "contactUsTab": "Contactez-nous",
+    "faqContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  "Chats": {
+    "title": "Discussion",
+    "searchPlaceholder": "Rechercher",
+    "stayConnected": "Restez connecté avec vos groupes",
+    "messagesLabel": "Messages"
+  },
+  "BottomTabs": {
+    "mapLabel": "Carte",
+    "meetupsLabel": "Rencontres",
+    "chatLabel": "Discussion",
+    "profileLabel": "Profil"
+  },
+  "Languages": {
+    "title": "Langue",
+    "english": "Anglais",
+    "french": "Français",
+    "saveButton": "Enregistrer"
+  },
+  "Notifications": {
+    "title": "Notifications",
+    "noNotifications": "Aucune notification trouvée"
+  },
+  "Validations": {
+    "emailRequired": "L'e-mail est obligatoire",
+    "spacesNotAllowedEmail": "Les espaces ne sont pas autorisés dans l'e-mail",
+    "emailMustContainAt": "L'e-mail doit contenir le symbole @",
+    "emailOnlyOneAt": "L'e-mail doit contenir un seul symbole @",
+    "invalidEmailFormat": "Format d'e-mail invalide avant @",
+    "invalidDomainFormat": "Format de domaine invalide",
+    "noDuplicateTld": "L'e-mail ne peut pas contenir de domaines en double (par ex. .com.com ou gmail.com.gmail.com)",
+    "invalidEmailFormatFull": "Format d'e-mail invalide. Veuillez entrer une adresse e-mail valide.",
+    "passwordRequired": "Le mot de passe est obligatoire",
+    "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
+    "passwordGreaterThan6": "Le mot de passe doit être plus long que 6 caractères",
+    "passwordNoSpaces": "Le mot de passe ne doit pas contenir d'espaces",
+    "passwordSpecialChar": "Doit contenir au moins un caractère spécial",
+    "passwordCapitalLetter": "Doit contenir au moins une lettre majuscule",
+    "passwordLowercaseLetter": "Doit contenir au moins une lettre minuscule",
+    "passwordNumber": "Doit contenir au moins un chiffre",
+    "passwordsNotMatch": "Les mots de passe ne correspondent pas",
+    "confirmPasswordRequired": "La confirmation du mot de passe est obligatoire",
+    "userNameRequired": "Le nom d'utilisateur est obligatoire",
+    "userNameMin3": "Le nom d'utilisateur doit contenir au moins 3 caractères",
+    "userNameMax50": "Le nom d'utilisateur ne doit pas dépasser 50 caractères",
+    "userNameNoSpaces": "Les espaces ne sont pas autorisés dans le nom d'utilisateur",
+    "userNameValidChars": "Le nom d'utilisateur ne peut contenir que des lettres, des chiffres, des traits d'union (-), des traits de soulignement (_) et des points (.)",
+    "usernameRequired": "Le nom d'utilisateur est obligatoire",
+    "usernameMin3": "Le nom d'utilisateur doit contenir au moins 3 caractères",
+    "usernameMax50": "Le nom d'utilisateur ne doit pas dépasser 50 caractères",
+    "usernameNoSpaces": "Les espaces ne sont pas autorisés dans le nom d'utilisateur",
+    "usernameValidChars": "Le nom d'utilisateur ne peut contenir que des lettres, des chiffres, des traits d'union (-), des traits de soulignement (_) et des points (.)",
+    "phoneDigitsOnly": "Le téléphone doit contenir uniquement des chiffres",
+    "phoneMinLength": "Le numéro doit contenir au moins 8 chiffres",
+    "phoneMaxLength": "Le numéro doit contenir moins de 12 chiffres",
+    "phoneRequired": "Le numéro de téléphone est obligatoire",
+    "oldPasswordRequired": "L'ancien mot de passe est obligatoire",
+    "newPasswordRequired": "Le mot de passe est obligatoire",
+    "newPasswordDifferent": "Le nouveau mot de passe doit être différent de l'ancien mot de passe",
+    "newPasswordUppercase": "Doit contenir au moins une lettre majuscule",
+    "meetupTitleRequired": "Le titre de la rencontre est obligatoire",
+    "meetupTitleMin3": "Le titre de la rencontre doit contenir au moins 3 caractères",
+    "meetupTitleMax100": "Le titre de la rencontre ne doit pas dépasser 100 caractères",
+    "hostNameRequired": "Le nom de l'hôte est obligatoire",
+    "hostNameMin2": "Le nom de l'hôte doit contenir au moins 2 caractères",
+    "hostNameMax50": "Le nom de l'hôte ne doit pas dépasser 50 caractères",
+    "dateRequired": "La date est obligatoire",
+    "startTimeRequired": "L'heure de début est obligatoire",
+    "locationRequired": "L'emplacement est obligatoire",
+    "locationMin3": "L'emplacement doit contenir au moins 3 caractères",
+    "locationMax200": "L'emplacement ne doit pas dépasser 200 caractères",
+    "descriptionMax1000": "La description ne doit pas dépasser 1000 caractères"
+  }
+}
+
