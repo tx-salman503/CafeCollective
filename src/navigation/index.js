@@ -6,6 +6,7 @@ import { Routes } from './Routes';
 import AuthStack from './AuthStack';
 import UnAuthStack from './UnAuthStack';
 import { SplachScreen2 } from '../screens/SplachScreen/SplachScreen2';
+import { SplachScreen3 } from '../screens/SplachScreen/SplashScreen3';
 
 
 const Stack = createNativeStackNavigator();
@@ -17,6 +18,7 @@ const AppNavigation = () => {
         screenOptions={{ headerShown: false }}>
         <Stack.Screen name={Routes.SplashScreen} component={SplachScreen} />
         <Stack.Screen name={Routes.SplashScreen2} component={SplachScreen2} />
+        <Stack.Screen name={Routes.SplashScreen3} component={SplachScreen3} />
       <Stack.Screen name={Routes.AuthStack} component={AuthStack} />
       <Stack.Screen name={Routes.UnAuthStack} component={UnAuthStack} />
       </Stack.Navigator>

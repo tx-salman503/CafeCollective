@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {Theme} from '../../libs';
 import Responsive, {AppFont, normalized} from '../../libs/responsive';
+import combineStyle from '../../libs/combineStyle';
 
 export const styles = StyleSheet.create({
   topView: {
@@ -12,12 +13,13 @@ export const styles = StyleSheet.create({
   },
   orText: {
     marginHorizontal: Responsive.getWidth(3),
-    color: Theme.colors.coolGray,
     fontSize: AppFont.commonFont.mediumSmall,
+    ...combineStyle.text14Mid,
+    color: Theme.colors.placecHolderColor,
   },
   leftLine: {
-    width: Responsive.getWidth('30'),
+    width: Responsive.getWidth('25'),
     height: 1,
-    backgroundColor: Theme.colors.lightMist,
+    backgroundColor: Theme.colors.placecHolderColor,
   },
 });

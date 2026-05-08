@@ -7,12 +7,15 @@ justifyContent:"center",
         alignItems: 'center',
     },
     logoContainer:{
-marginTop:moderateScale(50),
+justifyContent:"center",
+        alignItems: 'center',
+        textAlign:"center",
+        gap:moderateScale(10)
     },
     titleContainer:{
         alignItems:'center',
         marginTop:"auto",
         bottom:moderateScale(180),
     }
-
+    
 })

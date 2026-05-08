@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AppNavigation from './src/navigation';
-import Onbording7 from './src/components/OnbordingComponent/Onboding7/Onbording7';
 
 function App() {
   return (

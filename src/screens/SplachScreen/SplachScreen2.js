@@ -17,21 +17,21 @@ export const SplachScreen2 = ({ navigation }) => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            navigation.replace(onbording ? Routes.UnAuthStack : Routes.AuthStack);
-        }, 500);
+            navigation.replace(onbording ? Routes.AuthStack : Routes.AuthStack);
+        }, 2000);
         return () => clearTimeout(timer);
     }, [navigation, onbording]);
 
     return (
         <SafeFlexView>
             <View style={styles.container}>
-                <View style={styles.logoContainer}>
+                <View style={[styles.logoContainer,{marginTop:moderateScale(30)}]}>
                     <SvgXml xml={MapLogo}
                         width={moderateScale(143)}
                         height={moderateScale(190)}
                     />
                 </View>
-                <View style={styles.titleContainer}>
+                <View style={[styles.titleContainer,]}>
 <NativeText value={"Cafe"} style={[combineStyle.text28,{fontSize:moderateScale(32)}]} />
 <NativeText value={"Collective"} style={[combineStyle.text28,{fontSize:moderateScale(32)}]} />
                 </View>

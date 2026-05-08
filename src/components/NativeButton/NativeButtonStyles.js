@@ -7,22 +7,25 @@ import { moderateScale } from 'react-native-size-matters';
 const {getWidth, getHeight} = Responsive;
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: Theme.colors.navyBlue,
+    backgroundColor: Theme.colors.white,
     alignItems: 'center',
     width: getWidth(92),
-    height: moderateScale(50),
+    height: moderateScale(56),
     justifyContent: 'center',
     alignSelf: 'center',
     borderRadius: Theme.borders.miniMediumRadius,
+    borderWidth: 2,
+    borderColor: Theme.colors.lightBlack
   },
   buttonText: {
-    color: Theme.colors.white,
+    color: Theme.colors.black,
     fontSize: moderateScale(16),
     fontFamily:Theme.fontFamily.poppinsBold
   },
   titlswrap: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: getWidth('2'),
   },
   notificationBtn: {
     height: getWidth('5'),

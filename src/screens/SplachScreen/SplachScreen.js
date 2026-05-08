@@ -15,7 +15,7 @@ export const SplachScreen = ({ navigation }) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             navigation.replace(Routes.SplashScreen2);
-        }, 500);
+        }, 2000);
         return () => clearTimeout(timer);
     }, [navigation]);
 

@@ -79,7 +79,7 @@ alignItems: 'center',
 
   dot: {
     width: moderateScale(38),
-    height: moderateScale(8),
+    height: moderateScale(4),
     borderRadius: moderateScale(4),
     backgroundColor: '#7D8495',
     marginHorizontal: moderateScale(3),
@@ -87,7 +87,7 @@ alignItems: 'center',
 
   activeDot: {
     width: moderateScale(38),
-    height: moderateScale(8),
+    height: moderateScale(4),
     borderRadius: moderateScale(4),
     backgroundColor: Theme.colors.white,
     marginHorizontal: moderateScale(3),

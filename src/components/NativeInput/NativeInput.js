@@ -17,7 +17,7 @@
     placeholder,
     inputContainerStyle,
     inputStyle,
-    placeholderTextColor = "#808080",
+    placeholderTextColor = "#94A3B8",
     value,
     keyboardType,
     autoFocus,
@@ -115,11 +115,9 @@
         </View>
 
         {/* Error text */}
-        {errorText && (
-          <NativeText style={styles.errorText}>
-            {errorText}
-          </NativeText>
-        )}
+        <NativeText style={[styles.errorText, !errorText && { opacity: 0 }]}>
+          {errorText || ' '}
+        </NativeText>
       </View>
     );
   });

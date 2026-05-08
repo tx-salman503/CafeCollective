@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './style';
 import { SvgXml } from 'react-native-svg';
-import { back } from '../../assets/Svgs';
+import { back, backBlack } from '../../assets/Svgs';
 
 
 const hapticOptions = {
@@ -23,9 +23,10 @@ function BackBtnHeader() {
         onPress={() => {
           navigation.goBack();
         }}
+        hitSlop={10}
         activeOpacity={0.7}
         style={styles.backBtn}>
-        <SvgXml xml={back} width={40} height={40} />
+        <SvgXml xml={backBlack} width={60} height={60} />
       </TouchableOpacity>
     </View>
   );

@@ -11,6 +11,11 @@ const combineStyle = StyleSheet.create({
   flexDirection:"row",
   alignItems:"center", 
  },
+  rowStyle2:{
+  flexDirection:"row",
+  alignItems:"center", 
+  justifyContent:"center"
+ },
  text28:{
     fontSize:moderateScale(28),
     fontFamily:Theme.fontFamily.GlaxinSemiBold,
@@ -19,6 +24,11 @@ const combineStyle = StyleSheet.create({
  text18Semi:{
    fontSize:moderateScale(18),
    fontFamily:Theme.fontFamily.GlaxinSemiBold,
+   color:Theme.colors.white,
+ },
+  text18Bold:{
+   fontSize:moderateScale(18),
+   fontFamily:Theme.fontFamily.GlaxinBold,
    color:Theme.colors.white,
  },
  text24Mid:{
@@ -35,6 +45,26 @@ const combineStyle = StyleSheet.create({
   fontSize:moderateScale(20),
   fontFamily:Theme.fontFamily.GlaxinSemiBold,
   color:Theme.colors.black,
+ },
+ text30Bold:{
+fontSize:moderateScale(30),
+fontFamily:Theme.fontFamily.GlaxinBold,
+color:Theme.colors.white,
+ },
+ text16Regular:{
+  fontSize:moderateScale(16),
+  fontFamily:Theme.fontFamily.GlaxinRegular,
+  color:Theme.colors.white,
+ },
+ text16Mid:{
+  fontSize:moderateScale(16),
+  fontFamily:Theme.fontFamily.GlaxinMedium,
+  color:Theme.colors.white,
+ },
+ text14Mid:{
+  fontSize:moderateScale(14),
+  fontFamily:Theme.fontFamily.GlaxinMedium,
+  color:Theme.colors.white,
  }
 
 });

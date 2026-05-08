@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { moderateScale } from "react-native-size-matters";
+import combineStyle from "../../libs/combineStyle";
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -22,8 +23,8 @@ export const styles = StyleSheet.create({
     borderWidth: moderateScale(1),
     borderColor: "#6F7279",
     borderRadius: moderateScale(16),
-    paddingHorizontal: moderateScale(29),
-    paddingVertical: moderateScale(16),
+    paddingHorizontal: moderateScale(10),
+    paddingVertical: moderateScale(10),
     marginTop: moderateScale(-3),  
     backgroundColor:"#FFFFFF"
   },
@@ -31,4 +32,14 @@ export const styles = StyleSheet.create({
     color: "#000000",
     textAlign: "center",
   },
+  btn: {
+    ...combineStyle.text18Bold,
+    color:"black"
+  },
+  border:{
+    borderRadius: moderateScale(100),
+    height: moderateScale(56),
+    
+    
+  }
 });

@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { FlatList, Text, TouchableOpacity, View, Dimensions } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeFlexView } from '../../../components';
 import Onbording1 from '../../../components/OnbordingComponent/Onbording1';
 import Onbording2 from '../../../components/OnbordingComponent/Onbording2/Onbording2';
@@ -9,9 +8,8 @@ import Onbording4 from '../../../components/OnbordingComponent/Onbording4/Onbord
 import Onbording5 from '../../../components/OnbordingComponent/Onbording5/Onbording5';
 import Onbording6 from '../../../components/OnbordingComponent/Onboding6/Onbording6';
 import Onbording7 from '../../../components/OnbordingComponent/Onboding7/Onbording7';
-import { dispatchOnbording } from '../../../redux/slices/userSlice';
 import { Routes } from '../../../navigation/Routes';
-import styles from './style';
+import OnboardingProgress from '../../../components/OnboardingProgress/OnboardingProgress';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -26,13 +24,11 @@ const onboardingData = [
 ];
 
 const OnBordingScreen = ({ navigation }) => {
-  const dispatch = useDispatch();
   const flatListRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const finishOnboarding = () => {
-    dispatch(dispatchOnbording(true));
-    navigation.replace(Routes.UnAuthStack);
+    navigation.getParent()?.replace(Routes.SplashScreen3);
   };
 
   const handleNext = () => {
@@ -47,17 +43,9 @@ const OnBordingScreen = ({ navigation }) => {
 
   return (
     <SafeFlexView bar top={false} islinear={false}>
-      <View style={styles.paginationWrap}>
-        <View style={styles.paginationContainer}>
-          {onboardingData.map((item, index) => (
-            <View key={item.id} style={index === currentIndex ? styles.activeDot : styles.dot} />
-          ))}
-        </View>
-      </View>
+      <OnboardingProgress total={onboardingData.length} currentIndex={currentIndex} />
 
-      <TouchableOpacity style={styles.skip} onPress={finishOnboarding} activeOpacity={0.7}>
-        <Text style={styles.skipText}>Skip</Text>
-      </TouchableOpacity>
+     
 
       <FlatList
         ref={flatListRef}

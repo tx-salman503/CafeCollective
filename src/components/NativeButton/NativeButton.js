@@ -5,6 +5,8 @@ import styles from './NativeButtonStyles';
 import { Theme } from '../../libs';
 import AppLoader from '../AppLoader/Apploader';
 import { AppFont } from '../../libs/responsive';
+import { SvgXml } from 'react-native-svg';
+import { moderateScale } from 'react-native-size-matters';
 
 const NativeButton = ({
   onPress = () => { },
@@ -20,17 +22,13 @@ const NativeButton = ({
 }) => {
   return (
     <TouchableOpacity
-      activeOpacity={0.6}
+      activeOpacity={0.9}
       disabled={disabled}
       style={[styles.button, containerStyle]}
       onPress={onPress}>
       <View style={styles.titlswrap}>
         {LeftIcon && (
-          <Image
-            source={LeftIcon}
-            style={styles.notificationBtn}
-            resizeMode="contain"
-          />
+          <SvgXml xml={LeftIcon} width={moderateScale(22)} height={moderateScale(24)}/>
         )}
         {AlbumIcon && (
           <AlbumIcon

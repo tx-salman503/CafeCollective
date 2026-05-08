@@ -3,7 +3,12 @@ import UnAuthStack from "./UnAuthStack";
 export const Routes = {
   SplashScreen: 'SplashScreen',
   SplashScreen2: 'SplashScreen2',
+  SplashScreen3: 'SplashScreen3',
   OnboardingScreen: 'OnboardingScreen',
+  OnboardingScreen2: 'OnboardingScreen2',
+  OnboardingScreen3: 'OnboardingScreen3',
+  FirstOnboardingScreen: 'FirstOnboardingScreen',
+  Onboarding20Screen: 'Onboarding20Screen',
   AuthStack:"AuthStack",
   UnAuthStack: 'UnAuthStack',
   LoginScreen:"LoginScreen",

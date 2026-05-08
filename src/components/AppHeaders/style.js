@@ -8,8 +8,8 @@ const { getWidth, getHeight } = Responsive;
 
 const styles = StyleSheet.create({
     settingContainer: {
-   position:"absolute",
-   top:moderateScale(10),
+ paddingTop:moderateScale(10),
+//  backgroundColor:"yellow"
   },
 
   

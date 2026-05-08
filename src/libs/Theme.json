@@ -3,7 +3,10 @@
     "white": "#FFFFFF",
     "black": "#050505",
     "lightTransparet":"#FFFFFF1F",
-   
+    "ligtGray":"#FFFFFFB2",
+    "placecHolderColor":"#94A3B8",
+    "lightBlack":"#00000033",
+    "darkGray":"#9C9C9C"
    
 
 

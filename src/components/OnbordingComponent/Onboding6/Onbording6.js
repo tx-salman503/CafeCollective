@@ -15,7 +15,7 @@ const Onbording6 = () => {
         <Image
           source={images.Onboarding6img}
           style={styles.img}
-          resizeMode="contain"
+          
         />
       </View>
       <View style={styles.txtContainer}>
