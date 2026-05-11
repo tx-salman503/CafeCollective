@@ -172,11 +172,7 @@
       .matches(/[0-9]/, getTranslation('Validations.passwordNumber')),
       
       
-    currentPassword: yup
-      .string()
-      .required(getTranslation('Validations.confirmPasswordRequired'))
-      .matches(/^\S*$/, getTranslation('Validations.passwordNoSpaces'))
-      .oneOf([yup.ref('password'), null], getTranslation('Validations.passwordsNotMatch')),
+  
   });
 
   export const forgetpaswordSchema = yup.object().shape({

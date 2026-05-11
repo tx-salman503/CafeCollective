@@ -8,12 +8,17 @@ import { AppLogoWithBackground } from "../../assets/Svgs";
 import { moderateScale } from "react-native-size-matters";
 import NativeText from "../../components/AppTexts/NativeText";
 import { Routes } from "../../navigation/Routes";
+import { useSelector } from "react-redux";
 
 
 
 export const SplachScreen = ({ navigation }) => {
+    const { isAuth } = useSelector(state => state?.userReducer);
     useEffect(() => {
         const timer = setTimeout(() => {
+            isAuth ?
+            navigation.replace(Routes.UnAuthStack)
+            :
             navigation.replace(Routes.SplashScreen2);
         }, 2000);
         return () => clearTimeout(timer);

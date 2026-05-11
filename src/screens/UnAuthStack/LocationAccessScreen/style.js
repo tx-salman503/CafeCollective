@@ -10,31 +10,39 @@ export const styles = StyleSheet.create({
       
    },
    contentContainer: {
-  paddingHorizontal: moderateScale(15),
+  paddingHorizontal: moderateScale(30),
   gap: moderateScale(16),
   paddingBottom: moderateScale(30),
 },
    main:{
     flex:1,
+    paddingTop:moderateScale(35),
+    gap:moderateScale(27)
     
+   },
+   textBox:{
+    alignItems:"center",
+    gap:moderateScale(27)
+
+   },
+   badg:{
+    ...combineStyle.rowStyle,
+    gap:moderateScale(8),
+    paddingHorizontal:moderateScale(18),
+    height:moderateScale(50),
+    width:"100%",
+    borderWidth:1,
+    borderRadius:moderateScale(1000),
+    borderColor:Theme.colors.lightTransparet,
+    backgroundColor:Theme.colors.lightTransparet,
+    marginTop:moderateScale(17),
+    
+
    },
    btnContainer:{
     width: '100%',
     marginTop: moderateScale(10),
    },
-   googleBtn:{
-     ...combineStyle.text16Mid,
-     color:"#334155"
-   },
-   deviderText:{
-      fontSize: AppFonts.t3,
-      color: Theme.colors.smokeyGray,
-   },
-   AppleButton:
-   {
-       ...combineStyle.text16Mid,
-     color:"white",
-   }
   
 
 

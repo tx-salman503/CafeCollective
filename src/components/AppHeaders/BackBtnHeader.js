@@ -12,12 +12,13 @@ const hapticOptions = {
 };
 
 
-function BackBtnHeader() {
+function BackBtnHeader({containerStyle}) {
   const navigation = useNavigation();
 
   return (
     <View style={[
       styles.settingContainer,
+      containerStyle
     ]}>
       <TouchableOpacity
         onPress={() => {

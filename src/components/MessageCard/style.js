@@ -39,7 +39,8 @@ export const styles = StyleSheet.create({
   border:{
     borderRadius: moderateScale(100),
     height: moderateScale(56),
-    
+    justifyContent:"center",
+    width:"100%"
     
   }
 });

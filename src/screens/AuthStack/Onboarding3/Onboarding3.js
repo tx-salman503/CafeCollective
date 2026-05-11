@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { FlatList, TouchableOpacity, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { TouchableOpacity } from 'react-native';
 import { SafeFlexView } from '../../../components';
 import Onbording12 from '../../../components/OnBoarding3Component/Onboarding12/Onboarding12';
 import Onboarding13 from '../../../components/OnBoarding3Component/Onboarding13/Onboarding13';
@@ -11,8 +11,6 @@ import Onbording18 from '../../../components/OnBoarding3Component/Onboarding18/O
 import Onbording19 from '../../../components/OnBoarding3Component/Onboarding19/Onbording19';
 import { Routes } from '../../../navigation/Routes';
 import OnboardingProgress from '../../../components/OnboardingProgress/OnboardingProgress';
-
-const { width: screenWidth } = Dimensions.get('window');
 
 const onboardingData = [
   { id: '12', Component: Onbording12 },
@@ -26,7 +24,6 @@ const onboardingData = [
 ];
 
 const OnBordingScreen3 = ({ navigation }) => {
-  const flatListRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const finishOnboarding = () => {
@@ -35,39 +32,27 @@ const OnBordingScreen3 = ({ navigation }) => {
 
   const handleNext = () => {
     if (currentIndex < onboardingData.length - 1) {
-      const nextIndex = currentIndex + 1;
-      setCurrentIndex(nextIndex);
-      flatListRef.current?.scrollToIndex({ index: nextIndex, animated: true });
+      setCurrentIndex(prev => prev + 1);
       return;
     }
     finishOnboarding();
   };
 
+  const { Component: CurrentComponent } = onboardingData[currentIndex];
+
   return (
     <SafeFlexView bar top={false} islinear={false}>
-      <OnboardingProgress total={onboardingData.length} currentIndex={currentIndex} />
-
-      <FlatList
-        ref={flatListRef}
-        data={onboardingData}
-        keyExtractor={item => item.id}
-        horizontal
-        pagingEnabled
-        scrollEnabled={false}
-        bounces={false}
-        showsHorizontalScrollIndicator={false}
-        onMomentumScrollEnd={event => {
-          const index = Math.round(
-            event.nativeEvent.contentOffset.x / event.nativeEvent.layoutMeasurement.width,
-          );
-          setCurrentIndex(index);
-        }}
-        renderItem={({ item }) => (
-          <TouchableOpacity activeOpacity={1} onPress={handleNext} style={{ width: screenWidth }}>
-            <item.Component />
-          </TouchableOpacity>
-        )}
+      <OnboardingProgress
+        total={onboardingData.length}
+        currentIndex={currentIndex}
       />
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={handleNext}
+        style={{ flex: 1 }}
+      >
+        <CurrentComponent />
+      </TouchableOpacity>
     </SafeFlexView>
   );
 };

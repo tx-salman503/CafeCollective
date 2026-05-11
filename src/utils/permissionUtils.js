@@ -4,106 +4,138 @@ import {
   requestMultiple,
   requestNotifications,
   requestLocationAccuracy,
+  PERMISSIONS,
+  openSettings,
+  check,
 } from 'react-native-permissions';
+import { Platform, Alert } from 'react-native';
+
+let locationDeniedCount = 0;
 
 const handlePermission = result => {
-  let isPermitted = false;
   switch (result) {
-    case RESULTS.UNAVAILABLE:
-      console.warn(
-        'This feature is not available (on this device / in this context)',
-      );
-      break;
-    case RESULTS.DENIED:
-      console.warn(
-        'The permission has not been requested / is denied but requestable',
-      );
-      break;
     case RESULTS.LIMITED:
-      console.log(
-        '[Test]',
-        'The permission is limited: some actions are possible',
-      );
-      isPermitted = true;
-      break;
     case RESULTS.GRANTED:
-      console.log('[Test]', 'The permission is granted');
-      isPermitted = true;
-      break;
-    case RESULTS.BLOCKED:
-      console.warn('The permission is denied and not requestable anymore');
-      break;
+      return true;
+    default:
+      return false;
   }
-  return isPermitted;
+};
+
+const showSettingsAlert = () => {
+  Alert.alert(
+    'Location Permission Required',
+    'Please enable location permission from Settings to continue.',
+    [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Open Settings',
+        onPress: () => {
+          locationDeniedCount = 0;
+          openSettings().catch(() => {});
+        },
+      },
+    ],
+    { cancelable: false }
+  );
 };
 
 const permissionUtils = {
   getSinglePermission: async permission => {
-    let isPermitted = false;
     try {
       const result = await request(permission);
       return handlePermission(result);
-    } catch (error) {
-      //handle error
-      return isPermitted;
-    }
-  },
-  getMultiplePermission: async permissions => {
-    let isPermitted = false;
-
-    try {
-      const results = await requestMultiple(permissions);
-
-      // Check each permission result
-      for (let i = 0; i < permissions.length; i++) {
-        isPermitted = handlePermission(results[permissions[i]]) || isPermitted;
-      }
-
-      return isPermitted;
-    } catch (error) {
-      // Handle error
-      return isPermitted;
-    }
-  },
-  requestNotificationPermission: async () => {
-    try {
-      const {status} = await requestNotifications(['alert', 'badge', 'sound']);
-
-      if (
-        status === 'denied' ||
-        status === 'blocked' ||
-        status === 'unavailable'
-      ) {
-        // ask user to allow permission from app setting by using alert or toast
-        return false;
-      }
-      return true;
-    } catch (error) {
+    } catch {
       return false;
     }
   },
-  //only for ios
+
+  getMultiplePermission: async permissions => {
+    try {
+      const results = await requestMultiple(permissions);
+      return permissions.some(p => handlePermission(results[p]));
+    } catch {
+      return false;
+    }
+  },
+
+  requestNotificationPermission: async () => {
+    try {
+      const { status } = await requestNotifications(['alert', 'badge', 'sound']);
+      return status === 'granted';
+    } catch {
+      return false;
+    }
+  },
+
   requestLocationAccuracyPermission: async () => {
     try {
       const accuracy = await requestLocationAccuracy({
-        purposeKey:
-          'Need to fetch your location to show active route between two points',
+        purposeKey: 'Need to fetch your location to show active route between two points',
       });
-      console.log('[Test]', `Location accuracy is: ${accuracy}`);
-      if (
-        accuracy === 'denied' ||
-        accuracy === 'blocked' ||
-        accuracy === 'unavailable'
-      ) {
-        // ask user to allow permission from app setting by using alert or toast
-        return false;
-      }
-      return true;
-    } catch (error) {
-      console.error(error);
+      return accuracy === 'full';
+    } catch {
       return false;
     }
   },
+
+  requestLocationPermission: async () => {
+    try {
+      const locationPermission =
+        Platform.OS === 'ios'
+          ? PERMISSIONS.IOS.LOCATION_WHEN_IN_USE
+          : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+
+      const currentStatus = await check(locationPermission);
+
+      if (currentStatus === RESULTS.GRANTED || currentStatus === RESULTS.LIMITED) {
+        locationDeniedCount = 0;
+        return true;
+      }
+
+      if (currentStatus === RESULTS.BLOCKED) {
+        showSettingsAlert();
+        return false;
+      }
+
+      const result = await request(locationPermission);
+
+      if (result === RESULTS.GRANTED || result === RESULTS.LIMITED) {
+        locationDeniedCount = 0;
+        return true;
+      }
+
+      locationDeniedCount += 1;
+
+      if (locationDeniedCount >= 2) {
+        showSettingsAlert();
+      } else {
+        Alert.alert(
+          'Location Permission',
+          'Location access is needed. Please allow it to continue.',
+          [{ text: 'OK' }]
+        );
+      }
+
+      return false;
+    } catch {
+      return false;
+    }
+  },
+  // Sirf check karo, request mat karo
+checkLocationPermission: async () => {
+  try {
+    const locationPermission =
+      Platform.OS === 'ios'
+        ? PERMISSIONS.IOS.LOCATION_WHEN_IN_USE
+        : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+
+    const result = await check(locationPermission);
+    return result === RESULTS.GRANTED || result === RESULTS.LIMITED;
+  } catch {
+    return false;
+  }
+},
 };
 
 export default permissionUtils;

@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { moderateScale } from "react-native-size-matters";
 import { Theme ,Responsive} from "../../../libs";
+import combineStyle from "../../../libs/combineStyle";
 const { AppFonts } = Responsive;
 export const styles = StyleSheet.create({
    header: {
@@ -11,8 +12,12 @@ export const styles = StyleSheet.create({
    },
    main:{
     flex:1,
-    paddingHorizontal: moderateScale(20),
    },
+   contentContainer: {
+    paddingHorizontal: moderateScale(15),
+    gap: moderateScale(16),
+ 
+  },
    title:{
     fontSize: AppFonts.h4,
     color: Theme.colors.black,
@@ -45,8 +50,6 @@ export const styles = StyleSheet.create({
    
    },
    otpcontainer: {
-      marginTop: moderateScale(20),
-      marginBottom: moderateScale(8),
       flexDirection: 'row',
       justifyContent: 'center',
     },
@@ -54,49 +57,26 @@ export const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
+      alignSelf:"center",
       gap: moderateScale(8),
     },
     otpContainer: {
-      width: moderateScale(46),
+      width: moderateScale(50),
       height: moderateScale(50),
-      borderRadius: Theme.borders.miniRadius,
+      borderWidth:moderateScale(1),
+      borderColor:Theme.colors.lightTransparet,
+      backgroundColor:Theme.colors.lightTransparet,
+      borderRadius: Theme.borders.miniRadius+3,
       textAlign: 'center',
       textAlignVertical: 'center',
-      backgroundColor: Theme.colors.inputback,
-      fontFamily: Theme.fontFamily['Poppins-SemiBold'],
+      ...combineStyle.text16Semi,
       justifyContent: "center",
       alignItems: "center",
     },
 
-    resendContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      paddingHorizontal: moderateScale(7),
-
-      // marginTop: moderateScale(12),
-    },
-  
-    resendText: {
-      fontSize: AppFonts.t3,
-      fontFamily: Theme.fontFamily.poppinsMedium,
-      color: Theme.colors.black,
-    },
-  
-    resendLink: {
-      fontSize: AppFonts.t3,
-      fontFamily: Theme.fontFamily.poppinsSemiBold,
-      color: Theme.colors.navyBlue,
-      // marginLeft: 4,
-    },
-  
-    timerText: {
-      fontSize: AppFonts.t3,
-      fontFamily: Theme.fontFamily.poppinsSemiBold,
-      color: Theme.colors.raisinBlack,
-      // marginLeft: 6,
-    },
-   
-
+    btnContainer:{
+      width: '100%',
+      marginTop: moderateScale(10),
+     },
 
 });

@@ -14,6 +14,11 @@ export const images = {
  MessegBox2: require('./MessegBox2.png'),
  MessegBox3: require('./MessegBox3.png'),
  MessegBox4: require('./MessegBox4.png'),
+ FogMap: require('./FogMap.png'),
+ Cafe1:require('./Cafe1.jpg'),
+ Cafe2:require('./Cafe2.jpg'),
+ Cafe3:require('./Cafe3.jpg'),
+ 
 
 
 };

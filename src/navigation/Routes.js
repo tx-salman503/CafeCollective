@@ -1,4 +1,5 @@
-import UnAuthStack from "./UnAuthStack";
+
+
 
 export const Routes = {
   SplashScreen: 'SplashScreen',
@@ -11,28 +12,11 @@ export const Routes = {
   Onboarding20Screen: 'Onboarding20Screen',
   AuthStack:"AuthStack",
   UnAuthStack: 'UnAuthStack',
-  LoginScreen:"LoginScreen",
+  LoginScreen:"SignIn",
   Signup:"Signup",
   ForgetPassword:"ForgetPassword",
   VerifyOtp:"VerifyOtp",
-  ResetPassword:"ResetPassword",
-  SetupProfile:"SetupProfile",
-  Map:"Map",
-  Meetup:"Meetup",
-  Chats:"Chats",
-  Profile:"Profile",
-  BottomStack:"BottomStack",
-  EditProfile:"EditProfile",
-  EditName:"EditName",
-  EditBio:"EditBio",
-  UpdatePassword:"UpdatePassword",
-  PrivacyPolicy:"PrivacyPolicy",
-  HelpCenter:"HelpCenter",
-  Language:"Language",
-  MeetupDetails:"MeetupDetails",
-  CreateMeetup:"CreateMeetup",
-  Notification:"Notification",
-  ChatScreen:"ChatScreen",
-  EditSkill:"EditSkill",
-  HostProfile: 'HostProfile',
+  LocationAccessScreen:"LocationAccessScreen",
+  WelcomScreen:"WelcomScreen",
+  CafeSearchScreen:"CafeSearchScreen"
 };

@@ -1,79 +1,87 @@
 import { View } from 'react-native'
 import React from 'react'
-import NativeText from '../../../components/AppTexts/NativeText'
-import { NativeButton, NativeInput, SafeFlexView } from '../../../components'
+import { NativeInput, SafeFlexView, MessageCard, NativeButton } from '../../../components'
 import { styles } from './style'
-import { SvgXml } from 'react-native-svg'
-import {  Logo, mail, } from '../../../assets/Svgs'
-import { moderateScale } from 'react-native-size-matters'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Formik } from 'formik';
-import {  forgetpaswordSchema } from '../../../libs/commonManager'
+import BackBtnHeader from '../../../components/AppHeaders/BackBtnHeader'
+import NativeText from '../../../components/AppTexts/NativeText'
+import combineStyle from '../../../libs/combineStyle'
+import { Theme } from '../../../libs'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { Formik } from 'formik'
+import { forgetpaswordSchema,  } from '../../../libs/commonManager'
 import { useTranslation } from 'react-i18next'
 import { useNavigation } from '@react-navigation/native'
-import BackBtnHeader from '../../../components/AppHeaders/BackBtnHeader'
 import { Routes } from '../../../navigation/Routes'
-
+import { moderateScale } from 'react-native-size-matters'
 
 
 const ForgetPassword = () => {
-  
-  const navigation = useNavigation();
-  const { t } = useTranslation();
+
+  const navigation = useNavigation()
+  const { t } = useTranslation()
+
 
   const handleSignupSubmit = (values) => {
-    navigation.navigate(Routes.VerifyOtp);
-  };
+    navigation.navigate(Routes.LoginScreen)
+  }
 
   return (
-    <SafeFlexView bar>
+    <SafeFlexView>
+      <BackBtnHeader />
       <KeyboardAwareScrollView
         style={styles.main}
-        contentContainerStyle={{ flexGrow: 1 }}
+        contentContainerStyle={styles.contentContainer}
         showsVerticalScrollIndicator={false}
         enableOnAndroid={true}
         extraScrollHeight={80}
         keyboardShouldPersistTaps="handled"
       >
-        <BackBtnHeader/>
-        <View style={styles.header}>
-          <SvgXml xml={Logo} width={moderateScale(242)} height={moderateScale(131)} />
-        </View>
-        <View>
-          <NativeText style={styles.title} value="ForgetPassword.title" />
-          <NativeText style={styles.subtitle} value="ForgetPassword.subtitle" />
-        </View>
+        <NativeText
+          value="Forgot Password?"
+          style={[combineStyle.text30Bold, { textAlign: 'center' }]}
+        />
+        <NativeText
+          value={"Enter your email to recover your\npassword"}
+          style={[
+            combineStyle.text16Regular,
+            { textAlign: 'center', color: Theme.colors.ligtGray, marginBottom: moderateScale(27) },
+          ]}
+        />
+
         <Formik
-      initialValues={{ email: '' }}
-      validationSchema={forgetpaswordSchema}
-      onSubmit={handleSignupSubmit}
-    >
-      {({ values, handleChange, handleBlur, errors, touched, handleSubmit }) => (
-        <>
-        <NativeInput
-          label={t('ForgetPassword.emailLabel')}
-          placeholder={t('ForgetPassword.emailPlaceholder')}
-          leftComponent={<SvgXml xml={mail} width={moderateScale(24)} height={moderateScale(24)} />}
-          ContainerStyle={{ marginTop: moderateScale(16) }}
-          value={values.email}
-          onChangeText={handleChange('email')}
-          onBlur={handleBlur('email')}
-          errorText={touched.email && errors.email ? errors.email : null}
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-        <NativeButton
-          title={t('ForgetPassword.buttonTitle')}
-          titleStyle={styles.btnStyle}
-          containerStyle={styles.btnContainer}
-          onPress={handleSubmit}
-        />
-        </>
-      )}
+          initialValues={{ email: '',  }}
+          validationSchema={forgetpaswordSchema}
+          onSubmit={handleSignupSubmit}
+        >
+          {({ values, handleChange, handleBlur, errors, touched, handleSubmit }) => (
+            <View>
+
+              <NativeInput
+                label={t('Signup.emailLabel') || 'Email'}
+                placeholder={'your@email.com'}
+                value={values.email}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+                errorText={touched.email && errors.email ? errors.email : null}
+                keyboardType="email-address"
+                autoCapitalize="none"
+              />
+              <MessageCard
+                text='Send Link'
+                isBtn={true}
+                touchable={true}
+                onPress={() => {
+                  handleSubmit()
+                }}
+                containerStyle={styles.btnContainer}
+              />
+            </View>
+          )}
         </Formik>
       </KeyboardAwareScrollView>
     </SafeFlexView>
   )
 }
+
 
 export default ForgetPassword

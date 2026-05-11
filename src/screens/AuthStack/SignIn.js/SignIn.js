@@ -1,4 +1,4 @@
-import { Platform, TouchableOpacity, View } from 'react-native'
+import { Platform, Pressable, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import { NativeInput, SafeFlexView, MessageCard, NativeButton } from '../../../components'
 import { styles } from './style'
@@ -10,32 +10,24 @@ import { SvgXml } from 'react-native-svg'
 import { AppleIcon, closeEye, goolgeIcon, openEye } from '../../../assets/Svgs'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Formik } from 'formik'
-import { SignupSchema } from '../../../libs/commonManager'
+import { loginSchema, } from '../../../libs/commonManager'
 import { useTranslation } from 'react-i18next'
 import { useNavigation } from '@react-navigation/native'
 import { Routes } from '../../../navigation/Routes'
 import Orline from '../../../components/OrLine/OrLine'
 import AlreadyAccount from '../../../components/AlredyAccount/AlreadyAccount'
 import { moderateScale } from 'react-native-size-matters'
-import CheckBox from '@react-native-community/checkbox'
-import { useDispatch } from 'react-redux';
-import { dispatchisAuth } from '../../../redux/slices/userSlice';
 
-const Signup = () => {
+
+const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false)
   const navigation = useNavigation()
   const { t } = useTranslation()
-  const [isChecked, setIsChecked] = useState(false)
-  const [checkboxError, setCheckboxError] = useState(false)
-  const dispatch=useDispatch();
 
-  const handleSignupSubmit = () => {
-    console.warn("Salman")
-    dispatch(dispatchisAuth(true))
-    navigation.reset({
-      index: 0,
-      routes: [{ name: Routes.UnAuthStack }],
-    });
+
+  const handleSignupSubmit = (values) => {
+    console.log('Signup values:', values)
+    navigation.navigate(Routes.VerifyOtp)
   }
 
   return (
@@ -50,11 +42,11 @@ const Signup = () => {
         keyboardShouldPersistTaps="handled"
       >
         <NativeText
-          value="Create Your Explorer Account"
+          value="Sign in your Explorer Account"
           style={[combineStyle.text30Bold, { textAlign: 'center' }]}
         />
         <NativeText
-          value={"Join 10,000+ cafe explorers\ndiscovering their perfect workspace"}
+          value={"To sign in your accouny enter your email\nand password"}
           style={[
             combineStyle.text16Regular,
             { textAlign: 'center', color: Theme.colors.ligtGray, marginBottom: moderateScale(27) },
@@ -62,24 +54,15 @@ const Signup = () => {
         />
 
         <Formik
-          initialValues={{ name: '', email: '', password: '',  }}
-          validationSchema={SignupSchema}
+          initialValues={{ email: '', password: '', }}
+          validationSchema={loginSchema}
           onSubmit={handleSignupSubmit}
         >
           {({ values, handleChange, handleBlur, errors, touched, handleSubmit }) => (
             <View>
-              <NativeInput
-                label={'Name/Display Name'}
-                placeholder={'How should we call you?'}
-                value={values.name}
-                onChangeText={handleChange('name')}
-                onBlur={handleBlur('name')}
-                errorText={touched.name && errors.name ? errors.name : null}
-                autoCapitalize="words"
-              />
 
               <NativeInput
-                label={'Email'}
+                label={t('Signup.emailLabel') || 'Email'}
                 placeholder={'your@email.com'}
                 value={values.email}
                 onChangeText={handleChange('email')}
@@ -90,7 +73,7 @@ const Signup = () => {
               />
 
               <NativeInput
-                label={'Password'}
+                label={t('Signup.passwordLabel') || 'Password'}
                 placeholder={'Create a strong password'}
                 secureTextEntry={!showPassword}
                 value={values.password}
@@ -99,46 +82,19 @@ const Signup = () => {
                 errorText={touched.password && errors.password ? errors.password : null}
                 rightComponent={
                   <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                    <SvgXml xml={showPassword ? closeEye : openEye} width={24} height={24} />
+                    <SvgXml xml={showPassword ? openEye : closeEye} width={24} height={24} />
                   </TouchableOpacity>
                 }
               />
 
+              <Pressable onPress={()=>{navigation.navigate(Routes.VerifyOtp)}}>
+                <NativeText value={"Forgot Password?"} style={[combineStyle.text12Mid,{marginLeft:moderateScale(8)}]} />
+              </Pressable>
 
-              <TouchableOpacity
-                style={{ flexDirection: 'row', alignItems: 'center',  }}
-                onPress={() => {
-                  setIsChecked(!isChecked)
-                  setCheckboxError(false)
-                }}
-                activeOpacity={0.8}
-              >
-                <CheckBox
-                  value={isChecked}
-                  onValueChange={(newValue) => {
-                    setIsChecked(newValue)
-                    setCheckboxError(false)
-                  }}
-                  tintColor={checkboxError ? 'red' : 'white'}
-                  onCheckColor="white"
-                  tintColors={{
-                    true: 'white',
-                    false: checkboxError ? 'red' : 'white',
-                  }}
-                />
-                <NativeText
-                  value="I agree to the Terms of Service and Privacy Policy"
-                  style={[
-                    combineStyle.text12Regular,
-                    {
-                      color: checkboxError ? 'red' : Theme.colors.ligtGray,
-                    },
-                  ]}
-                />
-              </TouchableOpacity>
+
 
               <MessageCard
-                text='Create your Account'
+                text='Sign in '
                 isBtn={true}
                 touchable={true}
                 onPress={() => {
@@ -160,7 +116,7 @@ const Signup = () => {
           <NativeButton
             style={styles.googleBtn}
             title="Google"
-            onPress={() => {}}
+            onPress={() => { }}
             LeftIcon={goolgeIcon}
             titleStyle={styles.googleBtn}
           />
@@ -169,22 +125,22 @@ const Signup = () => {
             <NativeButton
               style={styles.googleBtn}
               title="Google"
-              onPress={() => {}}
+              onPress={() => { }}
               LeftIcon={goolgeIcon}
               titleStyle={styles.googleBtn}
             />
             <NativeButton
               style={styles.AppleButton}
               title="Apple"
-              onPress={() => {}}
+              onPress={() => { }}
               LeftIcon={AppleIcon}
               titleStyle={styles.AppleButton}
               containerStyle={{ backgroundColor: 'black' }}
             />
             <AlreadyAccount
-              firstTxt={"Already have an account? "}
-              secondTxt={"Sign In"}
-              onPress={() => navigation.navigate(Routes.LoginScreen)}
+              firstTxt={"Don’t  have an account?"}
+              secondTxt={"Create Account"}
+              onPress={() => navigation.navigate(Routes.Signup)}
             />
           </>
         )}
@@ -193,4 +149,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default SignIn

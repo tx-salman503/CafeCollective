@@ -36,7 +36,17 @@ const combineStyle = StyleSheet.create({
    fontFamily:Theme.fontFamily.GlaxinMedium,
    color:Theme.colors.white,
  },
+ text24Bold:{
+  fontSize:moderateScale(24),
+  fontFamily:Theme.fontFamily.GlaxinBold,
+  color:Theme.colors.white,
+},
  text24Semi:{
+  fontSize:moderateScale(24),
+  fontFamily:Theme.fontFamily.GlaxinSemiBold,
+  color:Theme.colors.white,
+ },
+ text16Semi:{
   fontSize:moderateScale(24),
   fontFamily:Theme.fontFamily.GlaxinSemiBold,
   color:Theme.colors.white,
@@ -51,6 +61,11 @@ fontSize:moderateScale(30),
 fontFamily:Theme.fontFamily.GlaxinBold,
 color:Theme.colors.white,
  },
+ text32Bold:{
+  fontSize:moderateScale(32),
+  fontFamily:Theme.fontFamily.GlaxinBold,
+  color:Theme.colors.white,
+   },
  text16Regular:{
   fontSize:moderateScale(16),
   fontFamily:Theme.fontFamily.GlaxinRegular,
@@ -61,10 +76,48 @@ color:Theme.colors.white,
   fontFamily:Theme.fontFamily.GlaxinMedium,
   color:Theme.colors.white,
  },
+ text16Bold:{
+  fontSize:moderateScale(16),
+  fontFamily:Theme.fontFamily.GlaxinBold,
+  color:Theme.colors.white,
+ },
  text14Mid:{
   fontSize:moderateScale(14),
   fontFamily:Theme.fontFamily.GlaxinMedium,
   color:Theme.colors.white,
+ },
+ text12Regular:{
+  fontSize:moderateScale(12),
+  fontFamily:Theme.fontFamily.GlaxinRegular,
+  color:Theme.colors.white,
+ },
+ text14Regular:{
+  fontSize:moderateScale(14),
+  fontFamily:Theme.fontFamily.GlaxinRegular,
+  color:Theme.colors.white,
+ },
+ text12Mid:{
+  fontSize:moderateScale(12),
+  fontFamily:Theme.fontFamily.GlaxinMedium,
+  color:Theme.colors.white,
+ },
+ text12Bold:{
+  fontSize:moderateScale(12),
+  fontFamily:Theme.fontFamily.GlaxinBold,
+  color:Theme.colors.white,
+ },
+ text14Bold:{
+  fontSize:moderateScale(14),
+  fontFamily:Theme.fontFamily.GlaxinBold,
+  color:Theme.colors.white,
+ },
+ checkboxStyle:{
+  width:moderateScale(20),
+  height:moderateScale(20),
+  borderWidth:1,
+  borderColor:Theme.colors.lightTransparet,
+  borderRadius:moderateScale(4),
+  backgroundColor:Theme.colors.lightTransparet,
  }
 
 });

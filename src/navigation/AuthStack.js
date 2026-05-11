@@ -7,9 +7,11 @@ import OnBordingScreen2 from '../screens/AuthStack/Onboarding2/Onboarding2';
 import OnBordingScreen3 from '../screens/AuthStack/Onboarding3/Onboarding3';
 import FirstOnboardingScreen from '../screens/AuthStack/FirstOnboarding/FirstOnboarding';
 import Onboarding20Screen from '../screens/AuthStack/Onboarding20/Onboarding20';
-import LoginScreen from '../screens/AuthStack/Login.js/Login';
 import SignupScreen from '../screens/AuthStack/Signup/Signup';
 import { useSelector } from 'react-redux';
+import SignIn from '../screens/AuthStack/SignIn.js/SignIn';
+import VerifyOtp from '../screens/AuthStack/VarifyOtp/VerifyOtp';
+import ForgetPassword from '../screens/AuthStack/ForgetPassword/ForgetPassword';
 
 export default function AuthStack() {
   const Stack = createNativeStackNavigator();
@@ -21,7 +23,6 @@ export default function AuthStack() {
         headerShown: false,
         orientation: 'default',
         freezeOnBlur: true,
-        animation: 'slide_from_bottom',
       }}
     >
       <Stack.Screen name={Routes.OnboardingScreen} component={OnBordingScreen} />
@@ -29,8 +30,11 @@ export default function AuthStack() {
       <Stack.Screen name={Routes.FirstOnboardingScreen} component={FirstOnboardingScreen} />
       <Stack.Screen name={Routes.OnboardingScreen3} component={OnBordingScreen3} />
       <Stack.Screen name={Routes.Onboarding20Screen} component={Onboarding20Screen} />
-      <Stack.Screen name={Routes.LoginScreen} component={LoginScreen} />
+      <Stack.Screen name={Routes.LoginScreen} component={SignIn} />
       <Stack.Screen name={Routes.Signup} component={SignupScreen} />
+      <Stack.Screen name={Routes.VerifyOtp} component={VerifyOtp} />
+      <Stack.Screen name={Routes.ForgetPassword} component={ForgetPassword} />
+
     </Stack.Navigator>
   );
 }
