@@ -1,49 +1,56 @@
-import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { Theme } from '../../libs';
-import { moderateScale } from 'react-native-size-matters';
-import NativeText from '../AppTexts/NativeText';
-import { SvgXml } from 'react-native-svg';
-import { whiteBackSvg } from '../../assets/Svgs';
-import { useNavigation } from '@react-navigation/native';
+import React from 'react'
+import { View, TouchableOpacity, StyleSheet } from 'react-native'
+import { moderateScale } from 'react-native-size-matters'
+import { Theme } from '../../libs'
+import NativeText from '../AppTexts/NativeText'
+import { SvgXml } from 'react-native-svg'
+import { backBlack } from '../../assets/Svgs'
+import { useNavigation } from '@react-navigation/native'
 
+/**
+ * NativeHeader
+ * Props:
+ *  - title: string
+ *  - back: bool — show back button
+ */
+function NativeHeader({ title, back = false }) {
+  const navigation = useNavigation()
 
-function NativeHeader({ title,back = false }) {
-  const navigation = useNavigation();
   return (
     <View style={styles.headerContainer}>
-      {
-        back?
-        <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.goBack()} style={styles.backButton}>
-        <SvgXml xml={whiteBackSvg} width={40} height={40} />
-      </TouchableOpacity>
-        :
-        null
-      }
-<NativeText style={styles.title}>{title}</NativeText>
+      {back && (
+        <TouchableOpacity
+          activeOpacity={0.7}
+          hitSlop={10}
+          onPress={() => navigation.goBack()}
+          style={styles.backButton}
+        >
+          <SvgXml xml={backBlack} width={48} height={48} />
+        </TouchableOpacity>
+      )}
+      <NativeText style={styles.title}>{title}</NativeText>
     </View>
-  );
+  )
 }
 
-export default NativeHeader;
+export default NativeHeader
 
-
- const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   headerContainer: {
-    height: moderateScale(110),
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Theme.colors.navyBlue,
-    paddingTop: moderateScale(25),
+    minHeight: moderateScale(48),
   },
   title: {
-    fontSize: moderateScale(19),
+    fontSize: moderateScale(16),
     fontFamily: Theme.fontFamily.poppinsSemiBold,
     color: Theme.colors.white,
+    textAlign: 'center',
   },
-  backButton:{
-position:'absolute',
-left:moderateScale(20),
-top:moderateScale(48),
-  }
-});
+  backButton: {
+    position: 'absolute',
+    left: moderateScale(0),
+  },
+})

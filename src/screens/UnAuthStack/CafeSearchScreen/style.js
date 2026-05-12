@@ -13,8 +13,6 @@ export const styles = StyleSheet.create({
    },
    main: {
       flex: 1,
-      paddingTop: moderateScale(15),
-      //  gap:moderateScale(27)
 
    },
    textBox: {

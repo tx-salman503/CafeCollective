@@ -13,9 +13,10 @@ import { Cafe, SearchIcon } from '../../../assets/Svgs';
 import { cafeReviewData } from '../../../utils/export';
 import { colors } from 'react-native-keyboard-controller/src/components/KeyboardToolbar/colors';
 import { Theme } from '../../../libs';
+import { Routes } from '../../../navigation/Routes'
 
 
-const CafeSearchScreen = () => {
+const CafeSearchScreen = ({ navigation }) => {
     const [search, setSearch] = useState("");
     const renderitem = ({ item }) => {
         return (
@@ -38,6 +39,8 @@ const CafeSearchScreen = () => {
                     containerStyle={styles.btnContainer}
                     firstWrapStyle={styles.btnContainer2}
                     textStyle={[combineStyle.text14Bold, { color: "black", bottom: moderateScale(2) }]}
+                    onPress={()=>{navigation.navigate(Routes.DiscoverScreen)}}
+                    touchable={true}
                 />
             </View>
         )
@@ -57,7 +60,7 @@ const CafeSearchScreen = () => {
                     ContainerStyle={{ width: "90%", alignSelf: "center" }}
                     placeholder="Search for a cafe ..."
                     value={search}
-                    onChanonChangeText={(text) => setSearch(text)}
+                    onChangeText={(text) => setSearch(text)}
                     leftComponent={<SvgXml xml={SearchIcon} width={moderateScale(20)} height={moderateScale(20)} />}
 
                 />

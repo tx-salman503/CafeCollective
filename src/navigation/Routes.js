@@ -1,3 +1,4 @@
+import DiscoverScreen from "../screens/UnAuthStack/DiscoverScree/DiscoverScreen";
 
 
 
@@ -18,5 +19,7 @@ export const Routes = {
   VerifyOtp:"VerifyOtp",
   LocationAccessScreen:"LocationAccessScreen",
   WelcomScreen:"WelcomScreen",
-  CafeSearchScreen:"CafeSearchScreen"
+  CafeSearchScreen:"CafeSearchScreen",
+  DiscoverScreen:"DiscoverScreen",
+OnboardingCafeDiscovery:"OnboardingCafeDiscovery"
 };
