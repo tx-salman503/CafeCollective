@@ -59,6 +59,7 @@ export const styles = StyleSheet.create({
   },
 
   labelsRow: {
+    marginTop:moderateScale(4),
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: moderateScale(7),

@@ -10,6 +10,8 @@ import AccessibilityValue from '../../../components/OnBoardingCafeDiscovery/Acce
 import CafeeFood from '../../../components/OnBoardingCafeDiscovery/Coffee&FoodQuality/CofeeFood'
 import Workability from '../../../components/OnBoardingCafeDiscovery/Workability/Workability'
 import ComfortEnvirment from '../../../components/OnBoardingCafeDiscovery/ComfortEnvirment/ComfortEnvirment'
+import AstheticVibe from '../../../components/OnBoardingCafeDiscovery/AestheticVibe/AestheticVibe'
+import SubmitScreen from '../../../components/OnBoardingCafeDiscovery/SubmitScreen/SubmitScreen'
 
 const TOTAL_STEPS = 6
 
@@ -35,6 +37,10 @@ const OnboardingCafeDiscovery = ({ navigation }) => {
               return <AccessibilityValue onNext={goNext} />
           case 4:
               return <ComfortEnvirment onNext={goNext} />
+              case 5:
+              return <AstheticVibe onNext={goNext} />
+              case 6:
+              return <SubmitScreen onNext={goNext} />
       default:
         return null
     }

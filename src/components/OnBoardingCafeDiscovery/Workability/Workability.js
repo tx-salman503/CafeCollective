@@ -5,7 +5,7 @@ import { styles } from './style'
 import NativeText from '../../AppTexts/NativeText'
 import combineStyle from '../../../libs/combineStyle'
 import QualityStatusCard from '../../QualityStatusCard/QualityStatusCard'
-import { ClockIcon, laptopIcon, plugIcon, TableIcon, wifiIcon } from '../../../assets/Svgs'
+import { ArrowRightSvg, ClockIcon, laptopIcon, plugIcon, TableIcon, wifiIcon } from '../../../assets/Svgs'
 import PowerOutletsAvailability from '../../PowerOutletsAvailability/PowerOutletsAvailability'
 import MessageCard from '../../MessageCard/MessageCard'
 
@@ -72,6 +72,7 @@ const Workability = ({onNext}) => {
                   isBtn={true}
                 text='Next'
                 onPress={onNext}
+                svg={ArrowRightSvg}
                 />
             </View>
      

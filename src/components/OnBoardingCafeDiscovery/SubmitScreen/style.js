@@ -9,6 +9,18 @@ export const styles = StyleSheet.create({
     gap: moderateScale(24),
     paddingTop: moderateScale(20),
   },
+
+  photoContainer:{
+height: moderateScale(166),
+borderWidth:1,
+borderRadius:moderateScale(24),
+borderColor: Theme.colors.white,
+borderStyle:'dashed',
+backgroundColor:Theme.colors.lightTransparet,
+justifyContent:'center',
+alignItems:'center',
+gap: moderateScale(8),
+  },
   textContainer: {
     gap: moderateScale(10),
     alignItems: 'center',
@@ -60,9 +72,9 @@ export const styles = StyleSheet.create({
     gap: moderateScale(15),
     borderWidth: 1,
     borderColor: Theme.colors.lightTransparet,
-    borderRadius: moderateScale(1200),
-    height: moderateScale(62),
-    paddingHorizontal: moderateScale(24),
+    backgroundColor: Theme.colors.lightTransparet,
+    borderRadius: moderateScale(12),
+    padding:moderateScale(16),
     justifyContent: "space-between"
 
   },
@@ -71,4 +83,45 @@ export const styles = StyleSheet.create({
   
 
   },
+
+  // ── Badge Tags ──
+  badgeTagsRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: moderateScale(10),
+    justifyContent:"center"
+  },
+  badgeTag: {
+    paddingVertical: moderateScale(6),
+    paddingHorizontal: moderateScale(12),
+    borderRadius: moderateScale(30),
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  badgeTagInactive: {
+    backgroundColor: 'transparent',
+    borderColor: 'rgba(255,255,255,0.25)',
+  },
+  badgeTagActive: {
+    backgroundColor: Theme.colors.white,
+    borderColor: Theme.colors.white,
+  },
+  badgeTagTextInactive: {
+    ...combineStyle.text12Regular,
+    color: Theme.colors.white,
+  },
+  badgeTagTextActive: {
+    color: Theme.colors.black,
+  },
+  svgContaienr:{
+    position:'absolute',
+  },
+  img:{
+    width: moderateScale(88),
+    height: moderateScale(45),
+    position:'absolute',
+  top: moderateScale(-15),    
+    right: moderateScale(-13), 
+  }
 });

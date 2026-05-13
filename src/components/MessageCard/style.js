@@ -7,17 +7,17 @@ export const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
   },
+
   shadowLayer: {
     width: "95%",
     borderWidth: moderateScale(1),
     borderColor: "#6F7279",
     borderRadius: moderateScale(16),
     backgroundColor: "#6F7279",
-    paddingBottom:moderateScale(4),
-    paddingTop:moderateScale(3)
-  
-      // offset upar se
+    paddingBottom: moderateScale(4),
+    paddingTop: moderateScale(3),
   },
+
   card: {
     width: "100%",
     borderWidth: moderateScale(1),
@@ -25,22 +25,34 @@ export const styles = StyleSheet.create({
     borderRadius: moderateScale(16),
     paddingHorizontal: moderateScale(10),
     paddingVertical: moderateScale(10),
-    marginTop: moderateScale(-3),  
-    backgroundColor:"#FFFFFF"
+    marginTop: moderateScale(-3),
+    backgroundColor: "#FFFFFF",
   },
+
   titleText: {
     color: "#000000",
     textAlign: "center",
   },
+
   btn: {
     ...combineStyle.text18Bold,
-    color:"black"
+    color: "black",
   },
-  border:{
+
+  border: {
     borderRadius: moderateScale(100),
     height: moderateScale(56),
-    justifyContent:"center",
-    width:"100%"
-    
-  }
+    justifyContent: "center",
+    width: "100%",
+  },
+
+  contentRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  svgIcon: {
+    marginLeft: moderateScale(8),
+  },
 });

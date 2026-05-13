@@ -21,5 +21,6 @@ export const Routes = {
   WelcomScreen:"WelcomScreen",
   CafeSearchScreen:"CafeSearchScreen",
   DiscoverScreen:"DiscoverScreen",
-OnboardingCafeDiscovery:"OnboardingCafeDiscovery"
+OnboardingCafeDiscovery:"OnboardingCafeDiscovery",
+AllSetScreen:"AllSetScreen"
 };

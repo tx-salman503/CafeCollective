@@ -44,3 +44,38 @@ export const cafeReviewData = [
     address: '42 Page Turner Blvd',
   },
 ];
+
+
+export const CAFE_DATA = [
+  {
+    id: '1',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.Cafe3,
+    rating: 4.8,
+    wifi:"BAD",
+    switch:"FEW",
+    speaker:"QUIET",
+  },
+   {
+    id: '2',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.Cafe3,
+    rating: 4.8,
+    wifi:"BAD",
+    switch:"FEW",
+    speaker:"QUIET",
+  },
+  {
+    id: '3',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.Cafe3,
+    rating: 4.8,
+    wifi:"BAD",
+    switch:"FEW",
+    speaker:"QUIET",
+  },
+   
+];

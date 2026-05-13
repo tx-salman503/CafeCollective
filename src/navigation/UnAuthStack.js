@@ -8,6 +8,7 @@ import WelcomScreen from '../screens/UnAuthStack/WelcomScreen/WelcomScreen';
 import CafeSearchScreen from '../screens/UnAuthStack/CafeSearchScreen/CafeSearchScreen';
 import DiscoverScreen from '../screens/UnAuthStack/DiscoverScree/DiscoverScreen';
 import OnboardingCafeDiscovery from '../screens/UnAuthStack/OnboardingCafeDiscovery/OnboardingCafeDiscovery'; 
+import AllSetScreen from '../screens/UnAuthStack/AllsetScreen/AllSet';
 export default function UnAuthStack() {
   const Stack = createNativeStackNavigator();
 
@@ -26,8 +27,8 @@ export default function UnAuthStack() {
       <Stack.Screen name={Routes.CafeSearchScreen} component={CafeSearchScreen} />
       <Stack.Screen name={Routes.DiscoverScreen} component={DiscoverScreen} />
       <Stack.Screen name={Routes.OnboardingCafeDiscovery} component={OnboardingCafeDiscovery} />
+      <Stack.Screen name={Routes.AllSetScreen} component={AllSetScreen} />
 
-      
     </Stack.Navigator>
   );
 }

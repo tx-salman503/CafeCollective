@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     gap: moderateScale(12),
   height: moderateScale(53),
-    paddingHorizontal: moderateScale(26),
+    paddingHorizontal: moderateScale(20),
     borderRadius: moderateScale(28),
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.14)',
@@ -33,9 +33,30 @@ export const styles = StyleSheet.create({
   },
   optionLabel: {
     color: '#FFFFFF',
-    flex: 1,
+  
   },
   optionLabelActive: {
     color: '#1E293B',
   },
+  textWrapper: {
+
+  flexDirection: 'row',
+  gap:moderateScale(5),
+
+  alignItems: 'center',
+},
+
+subLabel: {
+  color: 'rgba(255,255,255,0.7)',
+  top:moderateScale(1.5),
+  fontSize:moderateScale(11)
+  // marginLeft: moderateScale(6),
+},
+
+subLabelActive: {
+  color: '#475569',
+  fontSize:moderateScale(11),
+  top:moderateScale(1.5)
+
+},
 })

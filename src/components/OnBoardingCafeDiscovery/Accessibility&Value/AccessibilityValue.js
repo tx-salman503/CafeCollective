@@ -4,7 +4,7 @@ import SafeFlexView from '../../SafeFlexView/SafeFlexView'
 import { styles } from './style'
 import NativeText from '../../AppTexts/NativeText'
 import combineStyle from '../../../libs/combineStyle'
-import { fork, star, GoldenStar, clock, dollerSign, car, cycle } from '../../../assets/Svgs'
+import { fork, star, GoldenStar, clock, dollerSign, car, cycle, ArrowRightSvg } from '../../../assets/Svgs'
 import { SvgXml } from 'react-native-svg'
 import RadioSelector from '../../RadioSelector/RadioSelector'
 import MessageCard from '../../MessageCard/MessageCard'
@@ -46,7 +46,7 @@ const AccessibilityValue = ({ onNext }) => {
                 <NativeText value="Start Time   07:00 AM" style={combineStyle.text16Mid} />
               </View>
 
-               <View style={styles.badge}>
+              <View style={styles.badge}>
                 <SvgXml xml={clock} width={moderateScale(24)} height={moderateScale(24)} />
                 <NativeText value="End Time   09:00 PM" style={combineStyle.text16Mid} />
               </View>
@@ -98,7 +98,19 @@ const AccessibilityValue = ({ onNext }) => {
         <RadioSelector
           titleIcon={cycle}
           title="Accessibility"
-          options={['Wheelchair Friendly', 'Partially Accessible  (some access but not fully)', 'Not Accessible  (stairs/difficulty access)']}
+          options={[
+            {
+              label: 'Wheelchair Friendly',
+            },
+            {
+              label: 'Partially Accessible',
+              subLabel: '(some access but not fully)',
+            },
+            {
+              label: 'Not Accessible',
+              subLabel: '(stairs/difficulty access)',
+            },
+          ]}
           onSelect={(index, value) => console.log(index, value)}
         />
         <MessageCard
@@ -106,6 +118,8 @@ const AccessibilityValue = ({ onNext }) => {
           isBtn={true}
           text='Next'
           onPress={onNext}
+          svg={ArrowRightSvg}
+
         />
       </View>
     </View>

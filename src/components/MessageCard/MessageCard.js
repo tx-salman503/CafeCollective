@@ -1,5 +1,6 @@
 import React from "react";
 import { View, TouchableOpacity } from "react-native";
+import { SvgXml } from "react-native-svg";
 import NativeText from "../AppTexts/NativeText";
 import combineStyle from "../../libs/combineStyle";
 import { styles } from "./style";
@@ -11,20 +12,49 @@ const MessageCard = ({
   secondWrapStyle,
   textStyle,
   touchable = false,
-  isBtn=false,
+  isBtn = false,
   onPress = () => {},
+  svg = null, // optional svg prop
 }) => {
-
   const Content = (
     <View style={[styles.wrapper, containerStyle]}>
-      
-      {/* Dark offset shadow layer */}
-      <View style={[styles.shadowLayer,firstWrapStyle,textStyle,isBtn&& styles.border]}>
-        <View style={[styles.card,firstWrapStyle,isBtn&& styles.border]}>
-          <NativeText
-            value={text}
-            style={[combineStyle.text20Semi, styles.titleText, textStyle,isBtn&& styles.btn]}
-          />
+
+      {/* Dark shadow layer */}
+      <View
+        style={[
+          styles.shadowLayer,
+          firstWrapStyle,
+          textStyle,
+          isBtn && styles.border,
+        ]}
+      >
+        <View
+          style={[
+            styles.card,
+            firstWrapStyle,
+            isBtn && styles.border,
+          ]}
+        >
+          <View style={styles.contentRow}>
+            <NativeText
+              value={text}
+              style={[
+                combineStyle.text20Semi,
+                styles.titleText,
+                textStyle,
+                isBtn && styles.btn,
+              ]}
+            />
+
+            {svg && (
+              <SvgXml
+                xml={svg}
+                width={20}
+                height={20}
+                style={styles.svgIcon}
+              />
+            )}
+          </View>
         </View>
       </View>
 
@@ -34,10 +64,13 @@ const MessageCard = ({
   if (touchable) {
     return (
       <TouchableOpacity
-      activeOpacity={0.8}
-      onPress={onPress}
-      style={[{ width: "100%", alignItems: "center" }, containerStyle]}
-    >
+        activeOpacity={0.8}
+        onPress={onPress}
+        style={[
+          { width: "100%", alignItems: "center" },
+          containerStyle,
+        ]}
+      >
         {Content}
       </TouchableOpacity>
     );

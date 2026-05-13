@@ -5,7 +5,7 @@ import { styles } from './style'
 import NativeText from '../../AppTexts/NativeText'
 import combineStyle from '../../../libs/combineStyle'
 import MessageCard from '../../MessageCard/MessageCard'
-import { ActiveCircle, cofeeCup, fork, InactiveCircle, manuIcon, star, GoldenStar } from '../../../assets/Svgs'
+import { ActiveCircle, cofeeCup, fork, InactiveCircle, manuIcon, star, GoldenStar, ArrowRightSvg } from '../../../assets/Svgs'
 import { SvgXml } from 'react-native-svg'
 
 const menuOptions = [
@@ -110,6 +110,8 @@ const CafeeFood = ({ onNext }) => {
           isBtn={true}
           text={'Next'}
           onPress={onNext}  
+           svg={ArrowRightSvg}
+          
         />
       </View>
     </View>
