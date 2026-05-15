@@ -9,13 +9,18 @@ import CafeSearchScreen from '../screens/UnAuthStack/CafeSearchScreen/CafeSearch
 import DiscoverScreen from '../screens/UnAuthStack/DiscoverScree/DiscoverScreen';
 import OnboardingCafeDiscovery from '../screens/UnAuthStack/OnboardingCafeDiscovery/OnboardingCafeDiscovery'; 
 import AllSetScreen from '../screens/UnAuthStack/AllsetScreen/AllSet';
+import BottomStack from './BottomStack';
+import AllCafe from '../screens/UnAuthStack/AllCafe/AllCafe';
+import NotifcationScreen from '../screens/UnAuthStack/NotificationScreen/NotifcationScreen';
 export default function UnAuthStack() {
   const Stack = createNativeStackNavigator();
 
-  const {SetUpProfileDone} =useSelector(state=>state.userReducer);
+  const {setOnboardingCafeDiscovery} =useSelector(state=>state.userReducer);
+  console.log("setOnboardingCafeDiscovery",setOnboardingCafeDiscovery)
+
   return (
     <Stack.Navigator
-    initialRouteName={Routes.LocationAccessScreen}
+    initialRouteName={setOnboardingCafeDiscovery?Routes.BottomStack:Routes.LocationAccessScreen}
       screenOptions={{
         headerShown: false,
         orientation: 'default',
@@ -28,6 +33,9 @@ export default function UnAuthStack() {
       <Stack.Screen name={Routes.DiscoverScreen} component={DiscoverScreen} />
       <Stack.Screen name={Routes.OnboardingCafeDiscovery} component={OnboardingCafeDiscovery} />
       <Stack.Screen name={Routes.AllSetScreen} component={AllSetScreen} />
+      <Stack.Screen name={Routes.BottomStack} component={BottomStack} />
+      <Stack.Screen name={Routes.AllCafe} component={AllCafe} />
+      <Stack.Screen name={Routes.NotifcationScreen} component={NotifcationScreen} />
 
     </Stack.Navigator>
   );

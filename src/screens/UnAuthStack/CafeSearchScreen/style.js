@@ -34,23 +34,23 @@ export const styles = StyleSheet.create({
 
    },
    btnContainer: {
-      width: moderateScale(110),
-      height:moderateScale(36),
-      borderRadius:moderateScale(8),
-      padding:0,
-      
+      width: moderateScale(100),
+      height: moderateScale(36),
+      borderRadius: moderateScale(8),
+      padding: 0,
+
    },
    btnContainer2: {
-      width: moderateScale(110),
-      height:moderateScale(36),
-      borderRadius:moderateScale(8),
-      padding:0,
-      
+      width: moderateScale(100),
+      height: moderateScale(36),
+      borderRadius: moderateScale(8),
+      padding: 0,
+
    },
    imgcontainer: {
       width: '100%',
       height: moderateScale(362),
-      backgroundColor: "red"
+
    },
    innerContainer: {
       height: moderateScale(380),
@@ -67,11 +67,12 @@ export const styles = StyleSheet.create({
    cafeImg: {
       width: moderateScale(56),
       height: moderateScale(56),
-      resizeMode:"contain",
-      borderRadius:moderateScale(8),
+      resizeMode: "contain",
+      borderRadius: moderateScale(8),
    },
    list: {
-marginVertical:moderateScale(15)
+      marginVertical: moderateScale(15),
+      justifyContent: "space-between"
    }
 
 

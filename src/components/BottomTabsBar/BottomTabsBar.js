@@ -3,107 +3,69 @@ import { View, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SvgXml } from 'react-native-svg';
 import NativeText from '../AppTexts/NativeText';
-import { Theme } from '../../libs';
-import { useTranslation } from 'react-i18next';
-
-import {
-  MapSvg,
-  ActiveMapSvg,
-  MeetupSvg,
-  ActiveMeetupSvg,
-  ChatsSvg,
-  ActiveChatsSvg,
-  ProfileSvg,
-  ActiveProfileSvg,
-} from '../../assets/Svgs';
 import { moderateScale } from 'react-native-size-matters';
+import { SettingSvg,FavouriteSvg,ProfileSvg,ActiveHomeSvg,ActiveFavouriteSvg,ActiveSettingSvg,ActiveProfileSvg,HomeSvg } from '../../assets/Svgs';
+import { Theme } from '../../libs';
 
 const TABS = [
-  {
-    name: 'Map',
-    labelKey: 'BottomTabs.mapLabel',
-    icon: MapSvg,
-    activeIcon: ActiveMapSvg,
-  },
-  {
-    name: 'Meetup',
-    labelKey: 'BottomTabs.meetupsLabel',
-    icon: MeetupSvg,
-    activeIcon: ActiveMeetupSvg,
-  },
-  {
-    name: 'Chats',
-    labelKey: 'BottomTabs.chatLabel',
-    icon: ChatsSvg,
-    activeIcon: ActiveChatsSvg,
-  },
-  {
-    name: 'Profile',
-    labelKey: 'BottomTabs.profileLabel',
-    icon: ProfileSvg,
-    activeIcon: ActiveProfileSvg,
-  },
+  { name: 'Home',      label: 'Home',       icon: HomeSvg,      activeIcon: ActiveHomeSvg },
+  { name: 'Favorites', label: 'Favourites',  icon: FavouriteSvg, activeIcon: ActiveFavouriteSvg },
+  { name: 'Settings',  label: 'Settings',   icon: SettingSvg,  activeIcon: ActiveSettingSvg },
+  { name: 'Profile',   label: 'Profile',    icon: ProfileSvg,   activeIcon: ActiveProfileSvg },
 ];
 
 const BottomTabsBar = ({ state, descriptors, navigation }) => {
-  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      {state.routes.map((route, index) => {
-        const { options } = descriptors[route.key];
-        const isFocused = state.index === index;
+    <View style={[styles.wrapper, { paddingBottom: insets.bottom + moderateScale(12) }]}>
+      <View style={styles.container}>
+        {state.routes.map((route, index) => {
+          const { options } = descriptors[route.key];
+          const isFocused = state.index === index;
+          const tab = TABS.find(t => t.name === route.name);
+          if (!tab) return null;
 
-        const tab = TABS.find(t => t.name === route.name);
-        if (!tab) return null;
+          const onPress = () => {
+            const event = navigation.emit({
+              type: 'tabPress',
+              target: route.key,
+              canPreventDefault: true,
+            });
+            if (!isFocused && !event.defaultPrevented) {
+              navigation.navigate(route.name);
+            }
+          };
 
-        const onPress = () => {
-          const event = navigation.emit({
-            type: 'tabPress',
-            target: route.key,
-            canPreventDefault: true,
-          });
+          const onLongPress = () => {
+            navigation.emit({ type: 'tabLongPress', target: route.key });
+          };
 
-          if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name);
-          }
-        };
-
-        const onLongPress = () => {
-          navigation.emit({
-            type: 'tabLongPress',
-            target: route.key,
-          });
-        };
-
-        return (
-          <TouchableOpacity
-            key={route.key}
-            accessibilityRole="button"
-            accessibilityState={isFocused ? { selected: true } : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
-            onPress={onPress}
-            onLongPress={onLongPress}
-            style={styles.tabItem}
-            activeOpacity={0.7}
-          >
-            <SvgXml
-              xml={isFocused ? tab.activeIcon : tab.icon}
-              width={24}
-              height={24}
-            />
-            <NativeText
-              value={t(tab.labelKey)}
-              style={[
-                styles.label,
-                isFocused && styles.activeLabel,
-              ]}
-            />
-          </TouchableOpacity>
-        );
-      })}
+          return (
+            <TouchableOpacity
+              key={route.key}
+              accessibilityRole="button"
+              accessibilityState={isFocused ? { selected: true } : {}}
+              accessibilityLabel={options.tabBarAccessibilityLabel}
+              testID={options.tabBarTestID}
+              onPress={onPress}
+              onLongPress={onLongPress}
+              style={[styles.tabItem, isFocused && styles.tabItemActive]}
+              activeOpacity={0.8}
+            >
+              <SvgXml
+                xml={isFocused ? tab.activeIcon : tab.icon}
+                width={moderateScale(24)}
+                height={moderateScale(24)}
+              />
+              <NativeText
+                value={tab.label}
+                style={[styles.label, isFocused && styles.activeLabel]}
+              />
+            </TouchableOpacity>
+          );
+        })}
+      </View>
     </View>
   );
 };
@@ -111,30 +73,44 @@ const BottomTabsBar = ({ state, descriptors, navigation }) => {
 export default BottomTabsBar;
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+  wrapper: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
     alignItems: 'center',
-    minHeight: moderateScale(80),
-    backgroundColor: Theme.colors.white,
-    borderTopWidth: moderateScale(0.5),
-    borderTopColor: Theme.colors.lightBorder,
-    paddingTop: moderateScale(10),
+    paddingTop: moderateScale(8),
+  },
+  container: {
+    width:"90%",
+    flexDirection: 'row',
+    alignItems: 'center',
+       backgroundColor: Theme.colors.PrimaryBlue,  
+       borderWidth:1,
+       borderColor:Theme.colors.lightTransparet,
+    borderRadius: moderateScale(40),
+    paddingHorizontal: moderateScale(16),
+    paddingVertical: moderateScale(8),
+    justifyContent:"space-between"
+ 
   },
   tabItem: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
+    paddingHorizontal: moderateScale(14),
+    paddingVertical: moderateScale(8),
+    borderRadius: moderateScale(30),
+    gap: moderateScale(3),
+  },
+  tabItemActive: {
+    // backgroundColor: '#1e293b',        // active tab subtle highlight
   },
   label: {
-    marginTop: moderateScale(4),
-    fontSize: moderateScale(12),
-    color: Theme.colors.gray,
-    fontFamily: Theme.fontFamily.poppinsMedium,
+    fontSize: moderateScale(11),
+    color: '#6b7280',                  // inactive gray
   },
   activeLabel: {
-    color: Theme.colors.navyBlue,
-    fontFamily: Theme.fontFamily.poppinsSemiBold,
+    color: '#ffffff',                  // active white
+    fontWeight: '600',
   },
 });
-

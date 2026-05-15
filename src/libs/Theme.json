@@ -2,16 +2,26 @@
   "colors": {
     "white": "#FFFFFF",
     "black": "#050505",
+    "gray":"#8E8E93",
     "lightTransparet":"#FFFFFF1F",
     "ligtGray":"#FFFFFFB2",
     "placecHolderColor":"#94A3B8",
     "lightBlack":"#00000033",
     "darkGray":"#9C9C9C",
     "SlatyGray":"#656565",
-    "SlatyGrayDark":"#D3D3D3"
-   
-
-
+    "SlatyGrayDark":"#D3D3D3",
+    "PrimaryBlue":"#101421",
+    "navyBlack":"#1114167D",
+    "boldGray":"#B1B1B1",
+    "darkBlue":"#1A3A52",
+    "raisinBlack":"#242124",
+    "main":"#2C4379",
+    "navyBlue":"#2C4379",
+    "iconColor":"#B1B1B1",
+    "lightMist":"#E8E8E8",
+    "coolGray":"#A0A0A0",
+    "accent":"#FF6B6B",
+    "lightGray":"#B3B9C2"
   },
 
   "fontFamily": {

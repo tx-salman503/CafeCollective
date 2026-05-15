@@ -123,10 +123,11 @@ export default AmazingWorkModal;
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.99)',
+    backgroundColor: 'rgba(0,0,0,0.9)',
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: moderateScale(20),
+    marginBottom:moderateScale(20)
   },
 
   // Outer wrapper — owns the border + borderRadius + overflow clip

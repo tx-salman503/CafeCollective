@@ -15,6 +15,7 @@ const Onbording19 = () => {
            <MessageCard
                     text={"Let’s start\ndiscovering."}
                     textStyle={{fontSize:moderateScale(24),lineHeight:moderateScale(30)}}
+                    containerStyle={{width:"80%"}}
                     />
                    
            </View>

@@ -1,6 +1,3 @@
-import DiscoverScreen from "../screens/UnAuthStack/DiscoverScree/DiscoverScreen";
-
-
 
 export const Routes = {
   SplashScreen: 'SplashScreen',
@@ -11,16 +8,19 @@ export const Routes = {
   OnboardingScreen3: 'OnboardingScreen3',
   FirstOnboardingScreen: 'FirstOnboardingScreen',
   Onboarding20Screen: 'Onboarding20Screen',
-  AuthStack:"AuthStack",
+  AuthStack: "AuthStack",
   UnAuthStack: 'UnAuthStack',
-  LoginScreen:"SignIn",
-  Signup:"Signup",
-  ForgetPassword:"ForgetPassword",
-  VerifyOtp:"VerifyOtp",
-  LocationAccessScreen:"LocationAccessScreen",
-  WelcomScreen:"WelcomScreen",
-  CafeSearchScreen:"CafeSearchScreen",
-  DiscoverScreen:"DiscoverScreen",
-OnboardingCafeDiscovery:"OnboardingCafeDiscovery",
-AllSetScreen:"AllSetScreen"
+  LoginScreen: "SignIn",
+  Signup: "Signup",
+  ForgetPassword: "ForgetPassword",
+  VerifyOtp: "VerifyOtp",
+  LocationAccessScreen: "LocationAccessScreen",
+  WelcomScreen: "WelcomScreen",
+  CafeSearchScreen: "CafeSearchScreen",
+  DiscoverScreen: "DiscoverScreen",
+  OnboardingCafeDiscovery: "OnboardingCafeDiscovery",
+  AllSetScreen: "AllSetScreen",
+  BottomStack: "BottomStack",
+  AllCafe: "AllCafe",
+  NotifcationScreen: "NotifcationScreen"
 };

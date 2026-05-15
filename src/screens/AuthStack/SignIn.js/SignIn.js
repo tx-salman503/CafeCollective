@@ -74,7 +74,7 @@ const SignIn = () => {
 
               <NativeInput
                 label={t('Signup.passwordLabel') || 'Password'}
-                placeholder={'Create a strong password'}
+                placeholder={'Enter your password'}
                 secureTextEntry={!showPassword}
                 value={values.password}
                 onChangeText={handleChange('password')}

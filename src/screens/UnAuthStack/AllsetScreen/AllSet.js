@@ -13,10 +13,15 @@ import { SvgXml } from 'react-native-svg'
 import { ContactSvg } from '../../../assets/Svgs'
 import CafeCard from '../../../components/CafeCard/CafeCardList'
 import { CAFE_DATA } from '../../../utils/export'
+import { Routes } from '../../../navigation/Routes'
+import { useDispatch } from 'react-redux'
+import { dispatchCafeDiscovery } from '../../../redux/slices/userSlice'
 
 const AllSetScreen = ({ navigation }) => {
 
     const [barWidth, setBarWidth] = useState(0)  // ✅ measure real width
+    const dispatch = useDispatch();
+
 
     return (
         <SafeFlexView>
@@ -87,6 +92,7 @@ const AllSetScreen = ({ navigation }) => {
                 touchable
                 isBtn
                 containerStyle={{paddingBottom:moderateScale(10)}}
+                onPress={()=>{navigation.navigate(Routes.BottomStack);dispatch(dispatchCafeDiscovery(true))}}
                 />
             </KeyboardAwareScrollView>
       </ScrollView>

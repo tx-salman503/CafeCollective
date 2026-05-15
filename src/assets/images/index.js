@@ -1,4 +1,3 @@
-import { BinTag } from '../Svgs';
 
 export const images = {
  onbording1img: require('./OnBoarding1Img.png'),
@@ -25,8 +24,9 @@ export const images = {
  Angery:require('./Angery.png'),
  Smile:require('./Smile.png'),
  BinTag: require('./BeanImg.png'),
- MapImg:require('./MapImg.png')
- 
-
-
+ MapImg:require('./MapImg.png'),
+ CofeeImg:require('./CofeeImg.png'),
+ TableImg:require('./TableImg.png'),
+ CafeList1:require('./CafeList1.png'),
+ CafeList2:require('./CafeList2.png'),
 };

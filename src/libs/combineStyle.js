@@ -46,6 +46,11 @@ const combineStyle = StyleSheet.create({
   fontFamily:Theme.fontFamily.GlaxinBold,
   color:Theme.colors.white,
 },
+ text20Bold:{
+  fontSize:moderateScale(20),
+  fontFamily:Theme.fontFamily.GlaxinBold,
+  color:Theme.colors.white,
+},
  text24Semi:{
   fontSize:moderateScale(24),
   fontFamily:Theme.fontFamily.GlaxinSemiBold,

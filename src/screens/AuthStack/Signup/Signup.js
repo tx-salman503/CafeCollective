@@ -27,7 +27,7 @@ const Signup = () => {
   const { t } = useTranslation()
   const [isChecked, setIsChecked] = useState(false)
   const [checkboxError, setCheckboxError] = useState(false)
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
   const handleSignupSubmit = () => {
     console.warn("Salman")
@@ -62,7 +62,7 @@ const Signup = () => {
         />
 
         <Formik
-          initialValues={{ name: '', email: '', password: '',  }}
+          initialValues={{ name: '', email: '', password: '', }}
           validationSchema={SignupSchema}
           onSubmit={handleSignupSubmit}
         >
@@ -105,37 +105,30 @@ const Signup = () => {
               />
 
 
-              <TouchableOpacity
-                style={{ flexDirection: 'row', alignItems: 'center',  }}
-                onPress={() => {
-                  setIsChecked(!isChecked)
-                  setCheckboxError(false)
-                }}
-                activeOpacity={0.8}
-              >
-                <CheckBox
-                  value={isChecked}
-                  onValueChange={(newValue) => {
-                    setIsChecked(newValue)
-                    setCheckboxError(false)
-                  }}
-                  tintColor={checkboxError ? 'red' : 'white'}
-                  onCheckColor="white"
-                  tintColors={{
-                    true: 'white',
-                    false: checkboxError ? 'red' : 'white',
-                  }}
-                />
-                <NativeText
-                  value="I agree to the Terms of Service and Privacy Policy"
-                  style={[
-                    combineStyle.text12Regular,
-                    {
-                      color: checkboxError ? 'red' : Theme.colors.ligtGray,
-                    },
-                  ]}
-                />
-              </TouchableOpacity>
+             <TouchableOpacity
+  style={{ flexDirection: 'row', alignItems: 'center' }}
+  onPress={() => {
+    setIsChecked(!isChecked)
+    setCheckboxError(false)
+  }}
+  activeOpacity={0.8}
+>
+  <View style={styles.checkBox}>
+    {isChecked && (
+      <View style={styles.tick} />
+    )}
+  </View>
+
+  <NativeText
+    value="I agree to the Terms of Service and Privacy Policy"
+    style={[
+      combineStyle.text12Regular,
+      {
+        color: checkboxError ? 'red' : Theme.colors.white,
+      },
+    ]}
+  />
+</TouchableOpacity>
 
               <MessageCard
                 text='Create your Account'
@@ -160,7 +153,7 @@ const Signup = () => {
           <NativeButton
             style={styles.googleBtn}
             title="Google"
-            onPress={() => {}}
+            onPress={() => { }}
             LeftIcon={goolgeIcon}
             titleStyle={styles.googleBtn}
           />
@@ -169,14 +162,14 @@ const Signup = () => {
             <NativeButton
               style={styles.googleBtn}
               title="Google"
-              onPress={() => {}}
+              onPress={() => { }}
               LeftIcon={goolgeIcon}
               titleStyle={styles.googleBtn}
             />
             <NativeButton
               style={styles.AppleButton}
               title="Apple"
-              onPress={() => {}}
+              onPress={() => { }}
               LeftIcon={AppleIcon}
               titleStyle={styles.AppleButton}
               containerStyle={{ backgroundColor: 'black' }}

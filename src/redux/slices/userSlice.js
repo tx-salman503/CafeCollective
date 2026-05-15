@@ -8,6 +8,7 @@ const initialState = {
   onbording:false,
   language: 'en',
   SetUpProfileDone: false,
+  setOnboardingCafeDiscovery:false
 };
 
 const userSlice = createSlice({
@@ -16,6 +17,9 @@ const userSlice = createSlice({
   reducers: {
     dispatchToken: (state, action) => {
       state.token = action.payload;
+    },
+        dispatchCafeDiscovery: (state, action) => {
+      state.setOnboardingCafeDiscovery = action.payload;
     },
     dispatchUser: (state, action) => {
       state.user = action.payload;
@@ -50,6 +54,7 @@ export const {
   dispatchOnbording,
   dispatchLanguage,
   dispatchSetupProfile,
+  dispatchCafeDiscovery
 } = userSlice.actions;
 
 export default userSlice.reducer;

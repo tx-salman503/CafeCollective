@@ -44,7 +44,7 @@ const SubmitScreen = ({ onNext }) => {
 
             <View style={styles.container}>
                 <View style={styles.textContainer}>
-                    <NativeText value={'Anything else you d like to share?'} style={[combineStyle.text28Bold, { textAlign: 'center' }]} />
+                    <NativeText value={'Anything else you’d like to share?'} style={[combineStyle.text28Bold, { textAlign: 'center' }]} />
                     <NativeText value={'Add your secret tips and cafe review to earn more beans'} style={[combineStyle.text14Regular, { textAlign: 'center' }]} />
                 </View>
 
@@ -111,7 +111,6 @@ const SubmitScreen = ({ onNext }) => {
                         navigation.navigate(Routes.AllSetScreen)
                         
                     }}
-                    // All props are optional — defaults match the screenshot
                     title="Amazing Work"
                     badgeText="+100 Beans Earned & your First Invite Unlocked"
                     description="You just helped hundreds of café lovers find their perfect spot!"

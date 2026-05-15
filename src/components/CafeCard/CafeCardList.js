@@ -4,7 +4,7 @@ import { SvgXml } from 'react-native-svg';
 import { moderateScale } from 'react-native-size-matters';
 import NativeText from '../AppTexts/NativeText';
 import combineStyle from '../../libs/combineStyle';
-import { GoldenStar, speaker, switchBoard, wifiIcon } from '../../assets/Svgs';
+import { GoldenStar, silentSpeaker, speaker, switchBoard, wifiIcon } from '../../assets/Svgs';
 import { Theme } from '../../libs';
 
 
@@ -51,7 +51,7 @@ const CardItem = ({ item, onPress }) => (
                     <NativeText value={item.switch} style={combineStyle.text10Bold} />
                 </View>
                 <View style={styles.badge}>
-                    <SvgXml xml={speaker} width={moderateScale(14)} height={moderateScale(14)} />
+                    <SvgXml xml={item.speaker==="QUIET" ? silentSpeaker : speaker} width={moderateScale(14)} height={moderateScale(14)} />
                     <NativeText value={item.speaker} style={combineStyle.text10Bold} />
                 </View>
             </View>
@@ -63,14 +63,14 @@ const CardItem = ({ item, onPress }) => (
     </TouchableOpacity>
 );
 
-const CafeCard = ({ data = [], onPress, containerStyle }) => {
+const CafeCard = ({ data = [], onPress, containerStyle ,scrollEnabled=false}) => {
     return (
         <FlatList
             data={data}
             keyExtractor={(item) => String(item.id)}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={[styles.listContent, containerStyle]}
-            scrollEnabled={false}
+            scrollEnabled={scrollEnabled}
             ItemSeparatorComponent={() => <View style={styles.cardSeparator} />}
             renderItem={({ item }) => (
                 <CardItem item={item} onPress={onPress} />

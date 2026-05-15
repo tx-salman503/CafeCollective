@@ -1,81 +1,37 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
-
-// Importing styles, icons, and theme
-import styles from './style';
-import { AppIcons, Theme } from '../../libs';
-import { AppFont } from '../../libs/responsive';
-import HapticFeedback from 'react-native-haptic-feedback';
-
-// Importing custom text components
-import HeadingText from '../AppTexts/HeadingText';
-import NativeText from '../AppTexts/NativeText';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import combineStyle from '../../libs/combineStyle';
 import { SvgXml } from 'react-native-svg';
-import { back } from '../../assets/Svgs';
+import { whiteBack } from '../../assets/Svgs';
+import { moderateScale } from 'react-native-size-matters';
+import NativeText from '../AppTexts/NativeText';
+import { useNavigation } from '@react-navigation/native';
+import { Theme } from '../../libs';
 
-/**
- * AppHeader Component
- * 
- * This component renders a header with a title, subtitle, and two icons (Notification and Message).
- * The icons are wrapped in TouchableOpacity components to enable onPress actions.
- *
- * Props:
- * - onPress: Function to handle press events on the Message icon
- * - onPressBell: Function to handle press events on the Notification Bell icon
- * - headingLabel: Title text to be displayed in the header
- * - label: Subtitle text to be displayed under the title
- */
 
-// Define the haptic feedback options
-const hapticOptions = {
-  enableVibrateFallback: true,
-  ignoreAndroidSystemSettings: false,
-};
-
-function AppHeader({ onPress, onPressBell, headingLabel, label }) {
+function AppHeader({ title, onPressBell, label }) {
+  const navigation = useNavigation();
   return (
-    <View style={styles.homeHeaderContainer}>
-      {/* Header text section with title and subtitle */}
-      <View>
-        <HeadingText
-          body={headingLabel}
-          headingStyle={styles.homeHeaderLabel}
-        />
-        <NativeText style={styles.labelStyle}>
-          {label}
-        </NativeText>
-      </View>
-      
-      {/* Button section with Notification Bell and Message icons */}
-      <View style={styles.btnWrap}>
-        {/* Notification Bell Icon */}
-        <TouchableOpacity
-          onPress={() => {
-            HapticFeedback.trigger('soft', hapticOptions); // Trigger haptic feedback
-            onPressBell && onPressBell();
-          }}
-          style={styles.notificationBtn}
-        >
-        <SvgXml xml={back} width={24} height={24}/>
-        </TouchableOpacity>
-        
-        {/* Message Icon */}
-        <TouchableOpacity
-          onPress={() => {
-            HapticFeedback.trigger('soft', hapticOptions); // Trigger haptic feedback
-            onPress && onPress();
-          }}
-          style={styles.notificationBtn}
-        >
-          <AppIcons.MessageIcon
-            size={AppFont.commonFont.large}
-            color={Theme.colors.darkBlue}
-            disabled={true}
-          />
-        </TouchableOpacity>
-      </View>
+    <View style={styles.container}>
+      <TouchableOpacity onPress={() => { navigation.goBack() }}>
+        <SvgXml xml={whiteBack} width={moderateScale(18)} height={moderateScale(18)} />
+      </TouchableOpacity>
+      <NativeText value={title} style={[combineStyle.text20Bold,{textAlign:"center",marginLeft:moderateScale(24)}]} />
+      <TouchableOpacity onPress={onPressBell}>
+          <NativeText value={label} style={[combineStyle.text14Bold,{color:Theme.colors.boldGray}]} />
+      </TouchableOpacity>
     </View>
   );
 }
 
 export default AppHeader;
+
+
+const styles = StyleSheet.create({
+  container: {
+    ...combineStyle.rowStyle,
+    paddingHorizontal: moderateScale(18),
+    paddingTop: moderateScale(13),
+    justifyContent: 'space-between',
+  }
+})

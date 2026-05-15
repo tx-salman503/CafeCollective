@@ -1,5 +1,5 @@
 import { images } from "../assets/images";
-import { Cafe, GiveRating, TeaCup } from "../assets/Svgs";
+import { Cafe, CofeeSvg, discoveringSvg, filterSvg, GiveRating, laptopIcon, LaptopSvg, locationIcon, logoutSvg, profileSvg, resturantSvg, smallsearchIcon, TeaCup, wifiIcon } from "../assets/Svgs";
 
 
 
@@ -53,19 +53,19 @@ export const CAFE_DATA = [
     subtitle: 'Spadina Ave • 0.4km',
     image: images.Cafe3,
     rating: 4.8,
-    wifi:"BAD",
-    switch:"FEW",
-    speaker:"QUIET",
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
   },
-   {
+  {
     id: '2',
     title: 'Dark Horse Espresso',
     subtitle: 'Spadina Ave • 0.4km',
     image: images.Cafe3,
     rating: 4.8,
-    wifi:"BAD",
-    switch:"FEW",
-    speaker:"QUIET",
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
   },
   {
     id: '3',
@@ -73,9 +73,190 @@ export const CAFE_DATA = [
     subtitle: 'Spadina Ave • 0.4km',
     image: images.Cafe3,
     rating: 4.8,
-    wifi:"BAD",
-    switch:"FEW",
-    speaker:"QUIET",
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
   },
-   
+
 ];
+
+export const HomeScreenData = [
+  { id: 1, svg: filterSvg, text: "Filter" },
+  { id: 2, svg: CofeeSvg, text: "Cofee" },
+  { id: 4, svg: LaptopSvg, text: "Work Friendly" },
+  { id: 5, svg: wifiIcon, text: "Wifi" },
+
+]
+
+
+
+export const FavouriteDataArray = [
+  {
+    id: '1',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.Cafe3,
+    rating: 4.8,
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
+  },
+  {
+    id: '2',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.TableImg,
+    rating: 4.8,
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
+  },
+  {
+    id: '3',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.CofeeImg,
+    rating: 4.8,
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
+  },
+  {
+    id: '4',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.Cafe3,
+    rating: 4.8,
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
+  },
+  {
+    id: '',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.TableImg,
+    rating: 4.8,
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
+  },
+  {
+    id: '6',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.CofeeImg,
+    rating: 4.8,
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
+  },
+
+];
+
+
+export const RatingCafeArray = [
+  { id: 1, title: "Cafe Artigiano", rating: "5.0", totalReview: "105 reviews", tagSvg: LaptopSvg, tagtext: "Work friendly", img: images.Cafe3 },
+  { id: 2, title: "Cafe Haliso", rating: "5.0", totalReview: "105 reviews", tagSvg: LaptopSvg, tagtext: "Work friendly", img: images.Cafe3 },
+  { id: 3, title: "Cafe Artigiano", rating: "5.0", totalReview: "105 reviews", tagSvg: LaptopSvg, tagtext: "Work friendly", img: images.Cafe3 },
+
+]
+
+
+
+
+export const AllCafeArray = [
+  {
+    id: '1',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.CafeList1,
+    rating: 4.8,
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
+  },
+  {
+    id: '2',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.CafeList2,
+    rating: 4.8,
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
+  },
+  {
+    id: '3',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.CafeList2,
+    rating: 4.8,
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
+  },
+  {
+    id: '4',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.CafeList1,
+    rating: 4.8,
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
+  },
+  {
+    id: '',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.CafeList2,
+    rating: 4.8,
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
+  },
+  {
+    id: '6',
+    title: 'Dark Horse Espresso',
+    subtitle: 'Spadina Ave • 0.4km',
+    image: images.CafeList1,
+    rating: 4.8,
+    wifi: "BAD",
+    switch: "FEW",
+    speaker: "QUIET",
+  },
+
+];
+
+
+export const Settingsections = [
+  {
+    title: 'Account',
+    items: [
+      { id: 'editProfile', label: 'Edit Profile', icon: profileSvg, type: 'arrow', onPress: () => { } },
+    ],
+  },
+  {
+    title: 'Notifications',
+    items: [
+      { id: 'discovering', label: 'Discovering Opportunities', icon: discoveringSvg, type: 'toggle' },
+      { id: 'nearbyCafes', label: 'Nearby Cafes', icon: resturantSvg, type: 'toggle' },
+    ],
+  },
+  {
+    title: 'Preferences',
+    items: [
+      { id: 'searchRadius', label: 'Search Radius', icon: smallsearchIcon, type: 'arrow', rightLabel: '5 km', onPress: () => { } },
+    ],
+  },
+  {
+    title: 'Privacy',
+    items: [
+      { id: 'locationAccess', label: 'Location Access', icon: locationIcon, type: 'toggle' },
+      { id: 'logout', label: 'Log Out', icon: logoutSvg, type: 'arrow', onPress: () => { } },
+    ],
+  },
+]
+
+

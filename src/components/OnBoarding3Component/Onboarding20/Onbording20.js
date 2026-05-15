@@ -4,6 +4,7 @@ import SafeFlexView from '../../SafeFlexView/SafeFlexView';
 import { styles } from './style';
 import { images } from '../../../assets/images';
 import MessageCard from '../../MessageCard/MessageCard';
+import combineStyle from '../../../libs/combineStyle';
 
 
 const Onbording20 = ({ onStoreExplorerPress = () => {} }) => {
@@ -13,11 +14,12 @@ const Onbording20 = ({ onStoreExplorerPress = () => {} }) => {
                 <Image source={images.LastMen} style={styles.img} />
          
             <MessageCard
-                    text="Store Explorer"
+                    text="Start Exploring"
                     containerStyle={styles.buttonConatiner}
                     firstWrapStyle={styles.buttonConatiner2}
                     touchable={true}
                     onPress={onStoreExplorerPress}
+                    textStyle={[combineStyle.text20Bold,{color:"black"}]}
                     />
                      </View>  
         </SafeFlexView>

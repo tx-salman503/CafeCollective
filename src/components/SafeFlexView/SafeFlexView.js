@@ -15,7 +15,7 @@ export default function SafeFlexView({
 
   return isBackground ? (
     <LinearGradient
-    colors={['#1E3A5F', '#182033', '#0F1520']}
+    colors={["#2C4379","#182033"]}
     locations={[0, 0.45, 1]}
     start={{ x: 0, y: 0 }}
     end={{ x: 0, y: 1 }}

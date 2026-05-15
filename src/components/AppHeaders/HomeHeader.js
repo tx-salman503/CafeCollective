@@ -1,84 +1,63 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, Pressable } from 'react-native';
 import { Theme } from '../../libs';
 import { moderateScale } from 'react-native-size-matters';
 import NativeText from '../AppTexts/NativeText';
 import { SvgXml } from 'react-native-svg';
-import { Bell, eye, whiteBackSvg } from '../../assets/Svgs';
+import {  NotificationSvg, smallsearchIcon } from '../../assets/Svgs';
 import { useNavigation } from '@react-navigation/native';
+import NativeInput from '../NativeInput/NativeInput';
 
 
-function HomeHeader({bellPress}) {
+function HomeHeader({ onNotificationPress }) {
   const navigation = useNavigation();
+  const [searchText, setSearchText] = React.useState('');
   return (
     <View style={styles.headerContainer}>
-      <View>
-      <NativeText style={styles.title} value={"SkiConnect"}/>
-      </View>
-      <View style={styles.btnWrap} >
-        <View style={styles.VisibalContainer}>
-<View style={styles.dot}/>
-<NativeText style={styles.VisibleText} value={"Visible"}/>
-<TouchableOpacity activeOpacity={0.7} >
-  <SvgXml xml={eye} width={moderateScale(20)} height={moderateScale(20)}/>
-</TouchableOpacity>
-        </View>
-<TouchableOpacity activeOpacity={0.7} onPress={bellPress} >
-<SvgXml xml={Bell} width={moderateScale(40)} height={moderateScale(40)}/>
-</TouchableOpacity>
-      </View>
-     
+      <NativeInput
+    inputContainerStyle={styles.serach}
+    placeholderTextColor={Theme.colors.white}
+        placeholder={'Find productive workspaces'}
+        value={searchText}
+        onChangeText={setSearchText}
+        ContainerStyle={{ width: '83%' }}
+        leftComponent={
+          <SvgXml
+            xml={smallsearchIcon}
+          width={moderateScale(24)}
+            height={moderateScale(20)}
+            />
+          }
+      />
+
+<Pressable  onPress={onNotificationPress}>
+    <SvgXml xml={NotificationSvg} width={moderateScale(50)} height={moderateScale(50)} />
+</Pressable>
+
     </View>
   );
 }
 
 export default HomeHeader;
- const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   headerContainer: {
-    flexDirection:"row",
-    height: moderateScale(110),
+    flexDirection: "row",
+    paddingTop: moderateScale(15),
+    width: '100%',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: Theme.colors.navyBlue,
-    paddingTop: moderateScale(25),
-    paddingHorizontal: moderateScale(20),
+    paddingHorizontal: moderateScale(15),
+
   },
-  title: {
-    fontSize: moderateScale(19),
-    fontFamily: Theme.fontFamily.poppinsSemiBold,
-    color: Theme.colors.white,
-  },
-  backButton:{
-position:'absolute',
-left:moderateScale(20),
-top:moderateScale(48),
-  },
-  VisibalContainer:{
-    flexDirection:"row",
-    alignItems:"center",
-    justifyContent:"center",
-    height: moderateScale(40),
-    width: moderateScale(100),
-    backgroundColor: Theme.colors.white,
-    borderRadius: moderateScale(8),
-    gap: moderateScale(10),
-  },
-  btnWrap:{
-    flexDirection:"row",
-    gap: moderateScale(10),
-    alignItems:"center",
-    justifyContent:"center",
-  },
-  VisibleText:{
-    fontSize: moderateScale(12),
-    fontFamily: Theme.fontFamily.poppinsSemiBold,
-    color: Theme.colors.navyBlue,
-    marginTop : moderateScale(3),
-  },
-  dot:{
-    width: moderateScale(6),
-    height: moderateScale(6),
-    backgroundColor: Theme.colors.dot,
-    borderRadius: moderateScale(5),
-  },
+ serach:{
+  width: '100%',
+  borderRadius:moderateScale(40000),
+  height:moderateScale(48),
+ },
+ notifcation:{
+  width: moderateScale(50),
+  height: moderateScale(50),
+  borderRadius: moderateScale(20),
+  // backgroundColor:"red",
+  alignSelf:"center"
+ }
 });

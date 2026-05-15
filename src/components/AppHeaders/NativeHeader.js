@@ -6,18 +6,14 @@ import NativeText from '../AppTexts/NativeText'
 import { SvgXml } from 'react-native-svg'
 import { backBlack } from '../../assets/Svgs'
 import { useNavigation } from '@react-navigation/native'
+import combineStyle from '../../libs/combineStyle'
 
-/**
- * NativeHeader
- * Props:
- *  - title: string
- *  - back: bool — show back button
- */
-function NativeHeader({ title, back = false }) {
+
+function NativeHeader({ title, back = false,isoBorder=false }) {
   const navigation = useNavigation()
 
   return (
-    <View style={styles.headerContainer}>
+    <View style={[styles.headerContainer, isoBorder && {borderBottomWidth:1,borderColor:Theme.colors.lightTransparet,   minHeight : moderateScale(55),}]}>
       {back && (
         <TouchableOpacity
           activeOpacity={0.7}
@@ -28,7 +24,7 @@ function NativeHeader({ title, back = false }) {
           <SvgXml xml={backBlack} width={48} height={48} />
         </TouchableOpacity>
       )}
-      <NativeText style={styles.title}>{title}</NativeText>
+      <NativeText style={[styles.title,isoBorder && {...combineStyle.text20Bold,}]} value={title}/>
     </View>
   )
 }
@@ -40,13 +36,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Theme.colors.navyBlue,
     minHeight: moderateScale(48),
+    // backgroundColor:"transparent"
+
   },
   title: {
     fontSize: moderateScale(16),
     fontFamily: Theme.fontFamily.poppinsSemiBold,
-    color: Theme.colors.white,
+    // color: Theme.colors.white,
     textAlign: 'center',
   },
   backButton: {
