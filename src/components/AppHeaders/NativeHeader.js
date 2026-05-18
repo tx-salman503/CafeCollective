@@ -24,7 +24,7 @@ function NativeHeader({ title, back = false,isoBorder=false }) {
           <SvgXml xml={backBlack} width={48} height={48} />
         </TouchableOpacity>
       )}
-      <NativeText style={[styles.title,isoBorder && {...combineStyle.text20Bold,}]} value={title}/>
+      <NativeText style={[styles.title, {...combineStyle.text20Bold,}]} value={title}/>
     </View>
   )
 }

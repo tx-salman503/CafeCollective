@@ -22,5 +22,12 @@ export const Routes = {
   AllSetScreen: "AllSetScreen",
   BottomStack: "BottomStack",
   AllCafe: "AllCafe",
-  NotifcationScreen: "NotifcationScreen"
+  NotifcationScreen: "NotifcationScreen",
+  EditProfile:"EditProfile",
+  MyInvitations:"MyInvitations",
+  CafeDetail:"CafeDetail",
+  EditCafeDetail:"EditCafeDetail"
+
+
+
 };

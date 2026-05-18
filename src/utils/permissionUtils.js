@@ -32,7 +32,7 @@ const showSettingsAlert = () => {
         text: 'Open Settings',
         onPress: () => {
           locationDeniedCount = 0;
-          openSettings().catch(() => {});
+          openSettings().catch(() => { });
         },
       },
     ],
@@ -122,20 +122,46 @@ const permissionUtils = {
       return false;
     }
   },
-  // Sirf check karo, request mat karo
-checkLocationPermission: async () => {
-  try {
-    const locationPermission =
-      Platform.OS === 'ios'
-        ? PERMISSIONS.IOS.LOCATION_WHEN_IN_USE
-        : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
 
-    const result = await check(locationPermission);
-    return result === RESULTS.GRANTED || result === RESULTS.LIMITED;
-  } catch {
-    return false;
-  }
-},
+  requestCameraPermission: async () => {
+    try {
+      const cameraPermission =
+        Platform.OS === 'ios' ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA;
+      const result = await request(cameraPermission);
+      return handlePermission(result);
+    } catch {
+      return false;
+    }
+  },
+
+
+  checkCameraPermission: async () => {
+    try {
+      const cameraPermission = Platform.OS === 'ios' ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA;
+      const result = await check(cameraPermission);
+      return handlePermission(result);
+    } catch {
+      return false;
+    }
+  },
+
+
+
+
+  // Sirf check karo, request mat karo
+  checkLocationPermission: async () => {
+    try {
+      const locationPermission =
+        Platform.OS === 'ios'
+          ? PERMISSIONS.IOS.LOCATION_WHEN_IN_USE
+          : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+
+      const result = await check(locationPermission);
+      return result === RESULTS.GRANTED || result === RESULTS.LIMITED;
+    } catch {
+      return false;
+    }
+  },
 };
 
 export default permissionUtils;

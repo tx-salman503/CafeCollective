@@ -29,4 +29,5 @@ export const images = {
  TableImg:require('./TableImg.png'),
  CafeList1:require('./CafeList1.png'),
  CafeList2:require('./CafeList2.png'),
+Avtar :require('./Avtar.jpg'),
 };

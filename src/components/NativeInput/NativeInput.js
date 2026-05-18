@@ -64,9 +64,9 @@
       <View style={ContainerStyle }>
         {/* Label above input */}
         {label !== '' && (
-          <NativeText style={[styles.inputLabel, labelStyle]}>
-            {label}
-          </NativeText>
+          <NativeText  value={label}style={[styles.inputLabel, labelStyle]}/>
+     
+    
         )}
 
         <View

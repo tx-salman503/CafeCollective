@@ -101,6 +101,11 @@ color:Theme.colors.white,
   fontFamily:Theme.fontFamily.GlaxinMedium,
   color:Theme.colors.white,
  },
+  text14Semi:{
+  fontSize:moderateScale(14),
+  fontFamily:Theme.fontFamily.GlaxinSemiBold,
+  color:Theme.colors.white,
+ },
  text12Regular:{
   fontSize:moderateScale(12),
   fontFamily:Theme.fontFamily.GlaxinRegular,

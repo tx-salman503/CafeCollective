@@ -1,5 +1,20 @@
 import { images } from "../assets/images";
-import { Cafe, CofeeSvg, discoveringSvg, filterSvg, GiveRating, laptopIcon, LaptopSvg, locationIcon, logoutSvg, profileSvg, resturantSvg, smallsearchIcon, TeaCup, wifiIcon } from "../assets/Svgs";
+import {
+  Cafe, CofeeSvg, discoveringSvg, filterSvg, GiveRating, laptopIcon, LaptopSvg, locationIcon, logoutSvg, profileSvg, resturantSvg, smallsearchIcon, TeaCup, wifiIcon, BeanSvg,
+  InvitationAsseptedSvg,
+  InvitationAvailableSvg,
+  InvitationPendingSvg,
+  InvitationUnlockedSvg,
+  switchBoard,
+  ManueSvg,
+  CofeeCupWhite,
+  fork,
+  dollerSign,
+  parking,
+  Accessibility,
+  speaker,
+  crowd1,
+} from "../assets/Svgs";
 
 
 
@@ -260,3 +275,62 @@ export const Settingsections = [
 ]
 
 
+export const INVITATIONS = [
+  { id: '1', label: 'Invitation Unlocked', value: 7, icon: InvitationUnlockedSvg, highlight: false },
+  { id: '2', label: 'Invitations Available', value: 2, icon: InvitationAvailableSvg, highlight: false },
+  { id: '3', label: 'Invitations Accepted', value: 3, icon: InvitationAsseptedSvg, highlight: false },
+  { id: '4', label: 'Invitations Pending', value: 2, icon: InvitationPendingSvg, highlight: true },
+];
+
+
+export const STATS = [
+  { id: '1', label: 'Beans Collected', value: 647, icon: BeanSvg },
+  { id: '2', label: 'Cafes Discovered', value: 8, icon: resturantSvg },
+];
+
+
+export const shareOptions = {
+  title: 'Invite Friends',
+  message: 'Join me on Coffee XP! Use my code: COFFEE-XP-2026',
+  url: 'https://your-app-link.com', // optional
+};
+
+
+
+export const WORKABILITY_SCORES = [
+    { id: '1', label: 'WiFi', value: '4.8', stars: 5, icon:wifiIcon },
+    { id: '2', label: 'Outlets', value: 'Plenty', stars: 5, icon: switchBoard },
+    { id: '3', label: 'Laptop Friendly', value: 'Perfect', stars: 5, icon: LaptopSvg },
+]
+
+export const FOOD_ROWS = [
+    { id: '1', label: 'Menu Variety', value: 'Limited - Pastries only', icon: ManueSvg, pill: false, type: "manue" },
+    { id: '2', label: 'Coffee Quality', value: '4.8', icon: CofeeCupWhite, pill: false },
+    { id: '3', label: 'Food Quality', value: '4.6', icon: fork, pill: false },
+]
+
+
+
+export const ACCESS_ROWS = [
+    { id: '1', label: 'Opening Hours', value: 'Mon-Fri: 7 AM - 8 PM', icon: fork, pill: true },
+    { id: '2', label: 'Best Working Time', value: 'Morning', icon: dollerSign, pill: true },
+    { id: '3', label: 'Price Level', value: 'Mid-range $$', icon: dollerSign, pill: true },
+    { id: '4', label: 'Parking', value: 'Street parking', icon: parking, pill: false },
+    { id: '5', label: 'Accessibility', value: 'Partially Accessible', icon: Accessibility, pill: false },
+]
+
+
+export const COMFORT_SCORES = [
+    { id: '1', label: 'Comfort', value: 'Okay Comfort', icon: wifiIcon },
+    { id: '2', label: 'Noise Level', value: 'Moderate', icon: speaker },
+    { id: '3', label: 'Crowded', value: 'Monday', icon: crowd1 },
+]
+
+export const VIBE_TAGS = ['Warm Lighting', 'Modern Style', 'Social hangouts', 'Outdoor seating']
+
+
+export const CafeImgArray = [
+    { id: '1', source: images.CafeList1 },
+    { id: '2', source: images.CafeList2 },
+    { id: '3', source: images.CafeList1 },
+]

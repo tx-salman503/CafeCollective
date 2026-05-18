@@ -15,6 +15,7 @@ import autoMergeLevel1 from 'reduxjs-toolkit-persist/lib/stateReconciler/autoMer
 
 import userSlice from './slices/userSlice';
 import cartSlice from './slices/cartSlice';
+import CafeOnboardingSlice from './slices/CafeOnboardingSlice';
 
 const persistConfig = {
   key: 'root',
@@ -25,6 +26,7 @@ const persistConfig = {
 const reducers = combineReducers({
   userReducer: userSlice,
   cartReducer: cartSlice,
+  cafeReducer:CafeOnboardingSlice
 });
 
 const _persistedReducer = persistReducer(persistConfig, reducers);

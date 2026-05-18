@@ -7,6 +7,8 @@ import combineStyle from '../../../libs/combineStyle'
 import MessageCard from '../../MessageCard/MessageCard'
 import { ActiveCircle, cofeeCup, fork, InactiveCircle, manuIcon, star, GoldenStar, ArrowRightSvg } from '../../../assets/Svgs'
 import { SvgXml } from 'react-native-svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { dispatchOnboardingCafeeFood } from '../../../redux/slices/CafeOnboardingSlice'
 
 const menuOptions = [
   'Limited - Pastries only',
@@ -14,7 +16,9 @@ const menuOptions = [
   'Extensive - Full meals available',
 ]
 
-const CafeeFood = ({ onNext }) => {
+const CafeeFood = ({ onNext,   }) => {
+      const {OnboardingCafeeFoodType}=useSelector(state=>state.cafeReducer)
+      const dispatch=useDispatch();
   const [menuIndex, setMenuIndex] = useState(0)
   const [coffeeRating, setCoffeeRating] = useState(0)
   const [foodRating, setFoodRating] = useState(0)
@@ -24,14 +28,13 @@ const CafeeFood = ({ onNext }) => {
       <View style={styles.starRow}>
         {[1, 2, 3, 4, 5].map((index) => {
           const selected = index <= rating
-
           return (
             <TouchableOpacity
               key={index}
               style={styles.starButton}
               onPress={() => setRating(index)}
             >
-              <SvgXml xml={selected ? GoldenStar : star} width={38} height={38}  />
+              <SvgXml xml={selected ? GoldenStar : star} width={38} height={38} />
             </TouchableOpacity>
           )
         })}
@@ -43,7 +46,11 @@ const CafeeFood = ({ onNext }) => {
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <NativeText value={'Coffee & Food Quality'} style={combineStyle.text28Bold} />
+          {OnboardingCafeeFoodType ? (
+            <NativeText value={'Coffee & Food Quality'} style={combineStyle.text28Bold} />
+          ) : (
+            <NativeText value={'Edit Coffee & Food Quality'} style={combineStyle.text28Bold} />
+          )}
           <NativeText
             value={'Discover cafés with great coffee and food'}
             style={combineStyle.text14Regular}
@@ -73,7 +80,7 @@ const CafeeFood = ({ onNext }) => {
                 />
                 <NativeText
                   value={option}
-                  style={[combineStyle.text14Bold, styles.menuOptionLabel,  menuIndex === index && {color:"#1E293B"},]}
+                  style={[combineStyle.text14Bold, styles.menuOptionLabel, menuIndex === index && { color: "#1E293B" }]}
                 />
               </View>
             </TouchableOpacity>
@@ -82,11 +89,7 @@ const CafeeFood = ({ onNext }) => {
 
         <View style={styles.card}>
           <View style={styles.ratingHeader}>
-              <SvgXml
-                  xml={cofeeCup}
-                  width={20}
-                  height={20}
-                />
+            <SvgXml xml={cofeeCup} width={20} height={20} />
             <NativeText value={'Coffee Quality'} style={[combineStyle.text16Bold, styles.cardTitle]} />
           </View>
           {renderStars(coffeeRating, setCoffeeRating)}
@@ -94,24 +97,18 @@ const CafeeFood = ({ onNext }) => {
 
         <View style={styles.card}>
           <View style={styles.ratingHeader}>
-             <SvgXml
-                  xml={fork}
-                  width={20}
-                  height={20}
-                />
+            <SvgXml xml={fork} width={20} height={20} />
             <NativeText value={'Food Quality'} style={[combineStyle.text16Bold, styles.cardTitle]} />
           </View>
           {renderStars(foodRating, setFoodRating)}
         </View>
 
         <MessageCard
-        //   firstWrapStyle={styles.buttonContainer}
           touchable={true}
           isBtn={true}
-          text={'Next'}
-          onPress={onNext}  
-           svg={ArrowRightSvg}
-          
+          text={OnboardingCafeeFoodType ? 'Next' : 'Save'}
+          onPress={OnboardingCafeeFoodType ?()=>{ onNext,dispatch(dispatchOnboardingCafeeFood(false))} : () => { console.error("Save") }}
+          svg={ArrowRightSvg}
         />
       </View>
     </View>

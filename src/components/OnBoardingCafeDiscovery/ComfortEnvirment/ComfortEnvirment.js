@@ -1,9 +1,10 @@
-import { Image, TouchableOpacity, View, ScrollView } from 'react-native'
+import { Image, TouchableOpacity, View, ScrollView, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { styles } from './style'
 import NativeText from '../../AppTexts/NativeText'
 import combineStyle from '../../../libs/combineStyle'
-import { clock, emojiFace, GoldenStar, mice, speaker, star, crowd1, AngrySvg, MidSvg, smileSvg, existingSvg, dinner, ArrowRightSvg, calender } from '../../../assets/Svgs'
+import { clock, emojiFace, GoldenStar, mice, speaker, star, crowd1, dinner, ArrowRightSvg, calender } from '../../../assets/Svgs'
 import RadioSelector from '../../RadioSelector/RadioSelector'
 import MessageCard from '../../MessageCard/MessageCard'
 import QualityStatusCard from '../../QualityStatusCard/QualityStatusCard'
@@ -11,8 +12,9 @@ import PowerOutletsAvailability from '../../PowerOutletsAvailability/PowerOutlet
 import { SvgXml } from 'react-native-svg'
 import { moderateScale } from 'react-native-size-matters'
 import { images } from '../../../assets/images'
-import { StyleSheet } from 'react-native'
 import { Theme } from '../../../libs'
+import { dispatchOnboardingComfortEnvirment } from '../../../redux/slices/CafeOnboardingSlice'
+
 
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
@@ -22,6 +24,9 @@ const ComfortEnvirment = ({ onNext }) => {
   const [crowd, setCrowd] = useState('Balanced')
   const [foodRating, setFoodRating] = useState(0)
   const [selectedDay, setSelectedDay] = useState('Monday')
+
+  const { OnboardingComfortEnvirmentType } = useSelector(state => state.cafeReducer)
+  const dispatch = useDispatch()
 
   const EmojiArray = [images.Angery, images.Mid, images.Smile, images.Excited]
 
@@ -58,10 +63,7 @@ const ComfortEnvirment = ({ onNext }) => {
             >
               <NativeText
                 value={day}
-                style={[
-                  dayStyles.dayText,
-                  isSelected && dayStyles.dayTextActive,
-                ]}
+                style={[dayStyles.dayText, isSelected && dayStyles.dayTextActive]}
               />
             </TouchableOpacity>
           )
@@ -74,7 +76,11 @@ const ComfortEnvirment = ({ onNext }) => {
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <NativeText value={'Comfort & Environment'} style={combineStyle.text28Bold} />
+          {OnboardingComfortEnvirmentType ? (
+            <NativeText value={'Comfort & Environment'} style={combineStyle.text28Bold} />
+          ) : (
+            <NativeText value={'Edit Comfort & Environment'} style={combineStyle.text28Bold} />
+          )}
           <NativeText value={'Find cafes that are comfortable, quit and relaxing.'} style={combineStyle.text14Regular} />
         </View>
 
@@ -97,8 +103,7 @@ const ComfortEnvirment = ({ onNext }) => {
           onSelect={setWifiIndex}
         />
 
-        {/* Day of Visit */}
-        <View style={[styles.ratingHeader,{ marginTop: moderateScale(10) }]}>
+        <View style={[styles.ratingHeader, { marginTop: moderateScale(10) }]}>
           <SvgXml xml={calender} width={20} height={20} />
           <NativeText value={'Day of Visit'} style={[combineStyle.text16Bold, styles.cardTitle]} />
         </View>
@@ -146,8 +151,8 @@ const ComfortEnvirment = ({ onNext }) => {
           <MessageCard
             touchable={true}
             isBtn={true}
-            text='Next'
-            onPress={onNext}
+            text={OnboardingComfortEnvirmentType ? 'Next' : 'Save'}
+            onPress={OnboardingComfortEnvirmentType ? () => { onNext(); dispatch(dispatchOnboardingComfortEnvirment(true)); } : () => { console.error("Saved") }}
             containerStyle={{ marginTop: moderateScale(15) }}
             svg={ArrowRightSvg}
           />
@@ -164,7 +169,6 @@ const dayStyles = StyleSheet.create({
     gap: moderateScale(10),
   },
   dayButton: {
-    // each row: 3 items with gap — calc width to fit 3 per row
     width: '31%',
     height: moderateScale(44),
     borderRadius: moderateScale(28),
@@ -188,4 +192,5 @@ const dayStyles = StyleSheet.create({
     fontWeight: '700',
   },
 })
+
 export default ComfortEnvirment

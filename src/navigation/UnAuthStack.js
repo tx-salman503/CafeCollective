@@ -12,6 +12,10 @@ import AllSetScreen from '../screens/UnAuthStack/AllsetScreen/AllSet';
 import BottomStack from './BottomStack';
 import AllCafe from '../screens/UnAuthStack/AllCafe/AllCafe';
 import NotifcationScreen from '../screens/UnAuthStack/NotificationScreen/NotifcationScreen';
+import EditProfile from '../screens/UnAuthStack/EditProfile/EditProfile';
+import MyInvitations from '../screens/UnAuthStack/MyInvitations/MyInvitations';
+import CafeDetail from '../screens/UnAuthStack/CafeDetail/CafeDetail';
+import EditCafeDetail from '../screens/UnAuthStack/EditCafeDetail/EditCafeDetail';
 export default function UnAuthStack() {
   const Stack = createNativeStackNavigator();
 
@@ -36,6 +40,10 @@ export default function UnAuthStack() {
       <Stack.Screen name={Routes.BottomStack} component={BottomStack} />
       <Stack.Screen name={Routes.AllCafe} component={AllCafe} />
       <Stack.Screen name={Routes.NotifcationScreen} component={NotifcationScreen} />
+      <Stack.Screen name={Routes.EditProfile} component={EditProfile} />
+      <Stack.Screen name={Routes.MyInvitations} component={MyInvitations} />
+      <Stack.Screen name={Routes.CafeDetail} component={CafeDetail} />
+      <Stack.Screen name={Routes.EditCafeDetail} component={EditCafeDetail} />
 
     </Stack.Navigator>
   );

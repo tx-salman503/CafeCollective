@@ -12,12 +12,16 @@ import { SvgXml } from 'react-native-svg'
 import { moderateScale } from 'react-native-size-matters'
 import { images } from '../../../assets/images'
 import StandoutFeatures from '../../StandOutFeacture/StandOutFeacture'
+import { dispatchOnboardingAsthetice } from '../../../redux/slices/CafeOnboardingSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
-const AstheticVibe = ({ onNext }) => {
+const AstheticVibe = ({ onNext,  }) => {
 
-    const [styleVal, setstyleVal] = useState(1);
-    const [lighting, setLighting] = useState("Bright");
-    const [selected, setSelected] = useState([]);
+    const [styleVal, setstyleVal] = useState(1)
+    const [lighting, setLighting] = useState("Bright")
+    const [selected, setSelected] = useState([])
+    const { OnboardingAstheticVibeType } = useSelector(state => state.cafeReducer)
+    const disptch = useDispatch()
 
     const FEATURE_OPTIONS = [
         'Cozy & intimate',
@@ -26,49 +30,27 @@ const AstheticVibe = ({ onNext }) => {
         'Live music',
         'Pet-friendly',
         'Free Wi-Fi',
-    ];
-
+    ]
 
     const handleToggle = (option) => {
         setSelected((prev) =>
             prev.includes(option)
-                ? prev.filter((o) => o !== option)   // deselect
-                : [...prev, option]                  // select
-        );
-    };
-
-    const EmojiArray = [images.Angery, images.Mid, images.Smile, images.Excited]
-
-    const renderStars = (rating, setRating) => {
-        return (
-            <View style={styles.starRow}>
-                {[1, 2, 3, 4, 5].map((index) => {
-                    const selected = index <= rating
-
-                    return (
-                        <TouchableOpacity
-                            key={index}
-                            style={styles.starButton}
-                            onPress={() => setRating(index)}
-                        >
-                            <SvgXml xml={selected ? GoldenStar : star} width={38} height={38} />
-                        </TouchableOpacity>
-                    )
-                })}
-            </View>
+                ? prev.filter((o) => o !== option)
+                : [...prev, option]
         )
     }
 
     return (
-        <View style={{ flex: 1 }} >
-
-
+        <View style={{ flex: 1 }}>
             <View style={styles.container}>
                 <View style={styles.textContainer}>
-                    <NativeText value={'Aesthetic / Vibe'} style={combineStyle.text28Bold} />
+                    {OnboardingAstheticVibeType ? (
+                        <NativeText value={'Aesthetic / Vibe'} style={combineStyle.text28Bold} />
+                    ) : (
+                        <NativeText value={'Edit Aesthetic / Vibe'} style={combineStyle.text28Bold} />
+                    )}
                     <NativeText value={'Find cafes that feel right for your mood and style,'} style={combineStyle.text14Regular} />
                 </View>
-
 
                 <PowerOutletsAvailability
                     SvgIcon={Blub}
@@ -85,7 +67,6 @@ const AstheticVibe = ({ onNext }) => {
                     selectedValue={styleVal}
                     onChange={setstyleVal}
                 />
-
 
                 <RadioSelector
                     titleIcon={BestLife}
@@ -106,11 +87,11 @@ const AstheticVibe = ({ onNext }) => {
                 <MessageCard
                     touchable={true}
                     isBtn={true}
-                    text='Next'
-                    onPress={onNext}
-                    containerStyle={{ marginTop: moderateScale(15), }}
+                    text={OnboardingAstheticVibeType ? 'Next' : 'Save'}
+                    onPress={OnboardingAstheticVibeType ?()=>{onNext,disptch(dispatchOnboardingAsthetice(false))} : () => { console.error("Save") }}
+                    containerStyle={{ marginTop: moderateScale(15) }}
                     svg={ArrowRightSvg}
-
+                    
                 />
             </View>
         </View>

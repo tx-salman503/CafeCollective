@@ -7,13 +7,13 @@ import NativeText from '../../../components/AppTexts/NativeText'
 import ToggleSwitchComponent from '../../../components/ToggleSwitchComponent/ToggleSwitchComponent'
 import { SvgXml } from 'react-native-svg'
 import combineStyle from '../../../libs/combineStyle'
-import { Theme } from '../../../libs'
 import { discoveringSvg, profileSvg, resturantSvg, smallsearchIcon, locationIcon, logoutSvg, Gosvg } from '../../../assets/Svgs';
 import { moderateScale } from 'react-native-size-matters';
+import { Routes } from '../../../navigation/Routes'
 
 
 
-const SettingScreen = () => {
+const SettingScreen = ({navigation}) => {
   const [toggles, setToggles] = useState({
     discovering: true,
     nearbyCafes: true,
@@ -28,7 +28,7 @@ const SettingScreen = () => {
     {
       title: 'Account',
       items: [
-        { id: 'editProfile', label: 'Edit Profile', icon: profileSvg, type: 'arrow', onPress: () => { } },
+        { id: 'editProfile', label: 'Edit Profile', icon: profileSvg, type: 'arrow', onPress: () => {navigation.navigate(Routes.EditProfile)} },
       ],
     },
     {

@@ -9,7 +9,6 @@ const MessageCard = ({
   text = "Today your café discovery journey begins.",
   containerStyle,
   firstWrapStyle,
-  secondWrapStyle,
   textStyle,
   touchable = false,
   isBtn = false,
@@ -18,8 +17,6 @@ const MessageCard = ({
 }) => {
   const Content = (
     <View style={[styles.wrapper, containerStyle]}>
-
-      {/* Dark shadow layer */}
       <View
         style={[
           styles.shadowLayer,

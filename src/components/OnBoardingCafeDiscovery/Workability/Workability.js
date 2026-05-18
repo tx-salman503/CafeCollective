@@ -1,6 +1,5 @@
 import { View, Text } from 'react-native'
 import React, { useState } from 'react'
-import SafeFlexView from '../../SafeFlexView/SafeFlexView'
 import { styles } from './style'
 import NativeText from '../../AppTexts/NativeText'
 import combineStyle from '../../../libs/combineStyle'
@@ -8,21 +7,32 @@ import QualityStatusCard from '../../QualityStatusCard/QualityStatusCard'
 import { ArrowRightSvg, ClockIcon, laptopIcon, plugIcon, TableIcon, wifiIcon } from '../../../assets/Svgs'
 import PowerOutletsAvailability from '../../PowerOutletsAvailability/PowerOutletsAvailability'
 import MessageCard from '../../MessageCard/MessageCard'
+import { useDispatch, useSelector } from 'react-redux'
+import { dispatchOnboardingWorkability } from '../../../redux/slices/CafeOnboardingSlice'
 
-const Workability = ({onNext}) => {
+const Workability = ({onNext,}) => {
 
+    const {OnboardingWorkabilityType}=useSelector(state=>state.cafeReducer)
     const [wifiIndex, setWifiIndex] = useState(1);
     const [laptopIndex, setLaptopIndex] = useState(1);
     const [power, setPower] = useState('Plenty');
     const [table, setTable] = useState('Plenty');
     const [stayDuration, setStayDuration] = useState('Long Stay');
+    const dispatch=useDispatch()
 
 
     return (
       
             <View style={styles.container}>
                 <View style={styles.textContainer}>
+                    {
+                        OnboardingWorkabilityType?
                     <NativeText value={"Workability"} style={combineStyle.text28Bold} />
+
+                        :
+                    <NativeText value={"Edit Workability"} style={combineStyle.text28Bold} />
+
+                    }
                     <NativeText value={"Help others find the perfect workspace"} style={combineStyle.text14Regular} />
                 </View>
 
@@ -70,8 +80,8 @@ const Workability = ({onNext}) => {
                 firstWrapStyle={styles.buttonContainer}
                   touchable ={true}
                   isBtn={true}
-                text='Next'
-                onPress={onNext}
+                text= {OnboardingWorkabilityType?'Next':"Save"}
+                onPress={ OnboardingWorkabilityType?()=>{onNext,dispatch(dispatchOnboardingWorkability(false))}:()=>{console.error("Save")}}
                 svg={ArrowRightSvg}
                 />
             </View>

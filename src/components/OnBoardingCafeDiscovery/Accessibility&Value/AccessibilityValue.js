@@ -9,19 +9,23 @@ import { SvgXml } from 'react-native-svg'
 import RadioSelector from '../../RadioSelector/RadioSelector'
 import MessageCard from '../../MessageCard/MessageCard'
 import { moderateScale } from 'react-native-size-matters'
+import { useDispatch, useSelector } from 'react-redux'
+import { dispatchOnboardingAccessibilityValue } from '../../../redux/slices/CafeOnboardingSlice'
 
-const AccessibilityValue = ({ onNext }) => {
+const AccessibilityValue = ({ onNext, }) => {
 
   const [correctAnswer, setCorrectAnswer] = useState(null)
-
-
+      const {OnboardingAccessibilityValueType}=useSelector(state=>state.cafeReducer)
+const disptch=useDispatch()
   return (
-    <View style={{ flex: 1 }} >
-
-
+    <View style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <NativeText value={'Accessibility & Value'} style={combineStyle.text28Bold} />
+          {OnboardingAccessibilityValueType ? (
+            <NativeText value={'Accessibility & Value'} style={combineStyle.text28Bold} />
+          ) : (
+            <NativeText value={'Edit Accessibility & Value'} style={combineStyle.text28Bold} />
+          )}
           <NativeText value={'Find cafes that are convenient and afforable'} style={combineStyle.text14Regular} />
         </View>
 
@@ -45,7 +49,6 @@ const AccessibilityValue = ({ onNext }) => {
                 <SvgXml xml={clock} width={moderateScale(24)} height={moderateScale(24)} />
                 <NativeText value="Start Time   07:00 AM" style={combineStyle.text16Mid} />
               </View>
-
               <View style={styles.badge}>
                 <SvgXml xml={clock} width={moderateScale(24)} height={moderateScale(24)} />
                 <NativeText value="End Time   09:00 PM" style={combineStyle.text16Mid} />
@@ -88,41 +91,34 @@ const AccessibilityValue = ({ onNext }) => {
           onSelect={(index, value) => console.log(index, value)}
         />
 
-
         <RadioSelector
           titleIcon={car}
           title="Parking Availability"
           options={['None', 'Street Parking', 'Has free Parking']}
           onSelect={(index, value) => console.log(index, value)}
         />
+
         <RadioSelector
           titleIcon={cycle}
           title="Accessibility"
           options={[
-            {
-              label: 'Wheelchair Friendly',
-            },
-            {
-              label: 'Partially Accessible',
-              subLabel: '(some access but not fully)',
-            },
-            {
-              label: 'Not Accessible',
-              subLabel: '(stairs/difficulty access)',
-            },
+            { label: 'Wheelchair Friendly' },
+            { label: 'Partially Accessible', subLabel: '(some access but not fully)' },
+            { label: 'Not Accessible', subLabel: '(stairs/difficulty access)' },
           ]}
           onSelect={(index, value) => console.log(index, value)}
         />
+
         <MessageCard
           touchable={true}
           isBtn={true}
-          text='Next'
-          onPress={onNext}
+          text={OnboardingAccessibilityValueType ? 'Next' : 'Save'}
+          onPress={OnboardingAccessibilityValueType ? ()=>{onNext,disptch(dispatchOnboardingAccessibilityValue(false))} : () => { console.error("Save") }}
           svg={ArrowRightSvg}
-
         />
       </View>
     </View>
   )
 }
+
 export default AccessibilityValue

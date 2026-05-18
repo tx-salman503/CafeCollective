@@ -10,7 +10,8 @@ import { AllCafeArray, } from '../../../utils/export'
 import CafeCard from '../../../components/CafeCard/CafeCardList'
 import { SvgXml } from 'react-native-svg'
 import { Lock } from '../../../assets/Svgs'
-const AllCafe = () => {
+import { Routes } from '../../../navigation/Routes'
+const AllCafe = ({navigation}) => {
     return (
         <SafeFlexView>
             <SearchHeader />
@@ -21,7 +22,7 @@ const AllCafe = () => {
                     <View style={styles.line} />
                     <NativeText value={"3 Cafes Found"} style={combineStyle.text10Bold} />
                 </View>
-                <CafeCard data={AllCafeArray} scrollEnabled={false} />
+                <CafeCard data={AllCafeArray} scrollEnabled={false} onPress={()=>{navigation.navigate(Routes.CafeDetail)}}/>
 
             </View>
             <View style={styles.lockContainer}>

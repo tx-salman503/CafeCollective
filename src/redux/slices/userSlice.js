@@ -8,7 +8,8 @@ const initialState = {
   onbording:false,
   language: 'en',
   SetUpProfileDone: false,
-  setOnboardingCafeDiscovery:false
+  setOnboardingCafeDiscovery:false,
+
 };
 
 const userSlice = createSlice({
