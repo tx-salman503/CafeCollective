@@ -1,14 +1,11 @@
 import { View, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import SafeFlexView from '../../SafeFlexView/SafeFlexView'
 import { styles } from './style'
 import NativeText from '../../AppTexts/NativeText'
 import combineStyle from '../../../libs/combineStyle'
 import MessageCard from '../../MessageCard/MessageCard'
 import { ActiveCircle, cofeeCup, fork, InactiveCircle, manuIcon, star, GoldenStar, ArrowRightSvg } from '../../../assets/Svgs'
 import { SvgXml } from 'react-native-svg'
-import { useDispatch, useSelector } from 'react-redux'
-import { dispatchOnboardingCafeeFood } from '../../../redux/slices/CafeOnboardingSlice'
 
 const menuOptions = [
   'Limited - Pastries only',
@@ -16,9 +13,7 @@ const menuOptions = [
   'Extensive - Full meals available',
 ]
 
-const CafeeFood = ({ onNext,   }) => {
-      const {OnboardingCafeeFoodType}=useSelector(state=>state.cafeReducer)
-      const dispatch=useDispatch();
+const CafeeFood = ({ onNext, mode }) => {
   const [menuIndex, setMenuIndex] = useState(0)
   const [coffeeRating, setCoffeeRating] = useState(0)
   const [foodRating, setFoodRating] = useState(0)
@@ -46,14 +41,13 @@ const CafeeFood = ({ onNext,   }) => {
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          {OnboardingCafeeFoodType ? (
-            <NativeText value={'Coffee & Food Quality'} style={combineStyle.text28Bold} />
-          ) : (
-            <NativeText value={'Edit Coffee & Food Quality'} style={combineStyle.text28Bold} />
-          )}
+          <NativeText
+            value={mode === 'new' ? 'Coffee & Food Quality' : 'Edit Coffee & Food Quality'}
+            style={[combineStyle.text28Bold, { textAlign: 'center' }]}
+          />
           <NativeText
             value={'Discover cafés with great coffee and food'}
-            style={combineStyle.text14Regular}
+            style={[combineStyle.text14Regular, { textAlign: 'center' }]}
           />
         </View>
 
@@ -66,10 +60,7 @@ const CafeeFood = ({ onNext,   }) => {
           {menuOptions.map((option, index) => (
             <TouchableOpacity
               key={option}
-              style={[
-                styles.menuOption,
-                menuIndex === index && styles.menuOptionActive,
-              ]}
+              style={[styles.menuOption, menuIndex === index && styles.menuOptionActive]}
               onPress={() => setMenuIndex(index)}
             >
               <View style={styles.menuOptionRow}>
@@ -80,7 +71,7 @@ const CafeeFood = ({ onNext,   }) => {
                 />
                 <NativeText
                   value={option}
-                  style={[combineStyle.text14Bold, styles.menuOptionLabel, menuIndex === index && { color: "#1E293B" }]}
+                  style={[combineStyle.text14Bold, styles.menuOptionLabel, menuIndex === index && { color: '#1E293B' }]}
                 />
               </View>
             </TouchableOpacity>
@@ -106,9 +97,11 @@ const CafeeFood = ({ onNext,   }) => {
         <MessageCard
           touchable={true}
           isBtn={true}
-          text={OnboardingCafeeFoodType ? 'Next' : 'Save'}
-          onPress={OnboardingCafeeFoodType ?()=>{ onNext,dispatch(dispatchOnboardingCafeeFood(false))} : () => { console.error("Save") }}
+          text={mode === 'new' ? 'Next' : 'Save'}
           svg={ArrowRightSvg}
+          onPress={mode === 'new'
+            ? () => { onNext(); }
+            : () => { console.log('Save CafeeFood'); }}
         />
       </View>
     </View>

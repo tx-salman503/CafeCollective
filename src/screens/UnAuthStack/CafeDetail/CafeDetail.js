@@ -20,7 +20,7 @@ const SectionHeader = ({ title, editable ,onPress}) => (
     <View style={styles.sectionHeader}>
         <NativeText value={title} style={styles.sectionTitle} />
         {editable && (
-            <TouchableOpacity onPress={onPress}>
+            <TouchableOpacity onPress={onPress} hitSlop={10}>
                 <SvgXml xml={EditPen} width={moderateScale(16)} height={moderateScale(16)} />
             </TouchableOpacity>
         )}

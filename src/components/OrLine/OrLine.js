@@ -8,7 +8,7 @@ const Orline = ({text}) => {
   return (
     <View style={styles.topView}>
       <View style={styles.leftLine} />
-      <NativeText style={styles.orText}>{text || 'OR'}</NativeText>
+      <NativeText style={styles.orText}value={text}/>
       <View style={styles.leftLine} />
     </View>
   );

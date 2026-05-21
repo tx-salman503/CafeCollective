@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     marginTop: getHeight(0.4),
     fontSize: moderateScale(10),
     fontFamily: Theme.fontFamily.GlaxinRegular,
-    minHeight: moderateScale(12), // Reserve space for error text
+    minHeight: moderateScale(14), // Reserve space for error text
   },
   inputContainer: {
     flexDirection: "row",

@@ -8,19 +8,20 @@ const initialState = {
   onbording:false,
   language: 'en',
   SetUpProfileDone: false,
-  setOnboardingCafeDiscovery:false,
+  onboardingCafeDiscovery:false,
 
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
+
   reducers: {
     dispatchToken: (state, action) => {
       state.token = action.payload;
     },
         dispatchCafeDiscovery: (state, action) => {
-      state.setOnboardingCafeDiscovery = action.payload;
+      state.onboardingCafeDiscovery = action.payload;
     },
     dispatchUser: (state, action) => {
       state.user = action.payload;

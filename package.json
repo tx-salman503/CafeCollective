@@ -28,6 +28,7 @@
     "react-native": "0.85.3",
     "react-native-config": "^1.6.1",
     "react-native-confirmation-code-field": "^9.0.0",
+    "react-native-date-picker": "^5.0.13",
     "react-native-dotenv": "^3.4.11",
     "react-native-element-dropdown": "^2.12.4",
     "react-native-encrypted-storage": "^4.0.3",

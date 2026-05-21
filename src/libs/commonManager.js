@@ -14,232 +14,176 @@
     return i18n.t(key) || key;
   };
 
-  export const loginSchema = yup.object().shape({
-    email: yup.string()
-      .required(getTranslation('Validations.emailRequired'))
-      .test('no-spaces', getTranslation('Validations.spacesNotAllowedEmail'), (value) => {
-        if (!value) return true;
-        return !value.includes(' ');
-      })
-      .test('valid-format', getTranslation('Validations.emailMustContainAt'), (value) => {
-        if (!value) return true;
-        return value.includes('@');
-      })
-      .test('single-at', getTranslation('Validations.emailOnlyOneAt'), (value) => {
-        if (!value) return true;
-        return (value.match(/@/g) || []).length === 1;
-      })
-      .test('valid-local-part', getTranslation('Validations.invalidEmailFormat'), (value) => {
-        if (!value) return true;
-        const localPart = value.split('@')[0];
-        // Local part should have at least 1 character and can contain letters, numbers, dots, hyphens, underscores, plus signs, percent signs
-        return /^[a-zA-Z0-9._+%-]+$/.test(localPart) && localPart.length > 0;
-      })
-      .test('valid-domain', getTranslation('Validations.invalidDomainFormat'), (value) => {
-        if (!value) return true;
-        const parts = value.split('@');
-        if (parts.length !== 2) return false;
-        const domain = parts[1];
-        
-        // Domain must have at least one dot and proper structure
-        if (!domain.includes('.')) return false;
-        
-        // Domain parts separated by dots
-        const domainParts = domain.split('.');
-        
-        // Must have at least 2 parts (e.g., example.com)
-        if (domainParts.length < 2) return false;
-        
-        // Each part must be 1-63 characters and contain only alphanumeric and hyphens
-        for (let part of domainParts) {
-          if (part.length === 0 || part.length > 63) return false;
-          if (!/^[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?$/.test(part)) return false;
-        }
-        
-        // TLD must be at least 2 characters and contain only letters
-        const tld = domainParts[domainParts.length - 1];
-        if (!/^[a-zA-Z]{2,}$/.test(tld)) return false;
-        
-        return true;
-      })
-      .test('no-duplicate-tld', getTranslation('Validations.noDuplicateTld'), (value) => {
-        if (!value) return true;
-        const domain = value.split('@')[1];
-        if (!domain) return true;
-        
-      
-        const tldMatches = domain.match(/\.([a-zA-Z]{2,})/g);
-        if (!tldMatches || tldMatches.length < 2) return true; // Valid if only one TLD
-        
-        // Check if there are any duplicate TLDs
-        const tlds = tldMatches.map(t => t.toLowerCase());
-        const uniqueTlds = new Set(tlds);
-        return tlds.length === uniqueTlds.size; // True if all TLDs are unique
-      })
-      .matches(generalEmailRegex, getTranslation('Validations.invalidEmailFormatFull')),
-    password: yup.string()
-      .min(6, getTranslation('Validations.passwordMinLength'))
-      .matches(/^\S*$/, getTranslation('Validations.passwordNoSpaces'))
-      .required(getTranslation('Validations.passwordRequired')),
-  });
+export const loginSchema = yup.object().shape({
+  email: yup.string()
+    .required('Email is required')
+    .test('no-spaces', 'Email cannot contain spaces', (value) => {
+      if (!value) return true;
+      return !value.includes(' ');
+    })
+    .test('valid-format', 'Email must contain @', (value) => {
+      if (!value) return true;
+      return value.includes('@');
+    })
+    .test('single-at', 'Email can only contain one @', (value) => {
+      if (!value) return true;
+      return (value.match(/@/g) || []).length === 1;
+    })
+    .test('valid-local-part', 'Invalid email format', (value) => {
+      if (!value) return true;
+      const localPart = value.split('@')[0];
+      return /^[a-zA-Z0-9._+%-]+$/.test(localPart) && localPart.length > 0;
+    })
+    .test('valid-domain', 'Invalid domain format', (value) => {
+      if (!value) return true;
+      const parts = value.split('@');
+      if (parts.length !== 2) return false;
+      const domain = parts[1];
+      if (!domain.includes('.')) return false;
+      const domainParts = domain.split('.');
+      if (domainParts.length < 2) return false;
+      for (let part of domainParts) {
+        if (part.length === 0 || part.length > 63) return false;
+        if (!/^[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?$/.test(part)) return false;
+      }
+      const tld = domainParts[domainParts.length - 1];
+      if (!/^[a-zA-Z]{2,}$/.test(tld)) return false;
+      return true;
+    })
+    .test('no-duplicate-tld', 'Email contains duplicate domain extensions', (value) => {
+      if (!value) return true;
+      const domain = value.split('@')[1];
+      if (!domain) return true;
+      const tldMatches = domain.match(/\.([a-zA-Z]{2,})/g);
+      if (!tldMatches || tldMatches.length < 2) return true;
+      const tlds = tldMatches.map(t => t.toLowerCase());
+      const uniqueTlds = new Set(tlds);
+      return tlds.length === uniqueTlds.size;
+    })
+    .matches(generalEmailRegex, 'Invalid email format'),
+  password: yup.string()
+    .required('Password is required')
+    .min(6, 'Password must be at least 6 characters')
+    .matches(/^\S*$/, 'Password cannot contain spaces'),
+});
 
-
-  export const SignupSchema = yup.object().shape({
-    name: yup.string()
-      .required(getTranslation('Validations.userNameRequired'))
-      .min(3, getTranslation('Validations.userNameMin3'))
-      .max(50, getTranslation('Validations.userNameMax50'))
-      .test('no-spaces', getTranslation('Validations.userNameNoSpaces'), (value) => {
-        if (!value) return true; // Allow empty value
-        return !value.includes(' '); // Return false if any space exists
-      })
-      .test('valid-characters', getTranslation('Validations.userNameValidChars'), (value) => {
-        if (!value) return true; // Allow empty value
-        // Allow alphanumeric, hyphens, underscores, and periods
-        return /^[a-zA-Z0-9\-_.]+$/.test(value);
-      }),
-    email: yup.string()
-      .required(getTranslation('Validations.emailRequired'))
-      .test('no-spaces', getTranslation('Validations.spacesNotAllowedEmail'), (value) => {
-        if (!value) return true;
-        return !value.includes(' ');
-      })
-      .test('valid-format', getTranslation('Validations.emailMustContainAt'), (value) => {
-        if (!value) return true;
-        return value.includes('@');
-      })
-      .test('single-at', getTranslation('Validations.emailOnlyOneAt'), (value) => {
-        if (!value) return true;
-        return (value.match(/@/g) || []).length === 1;
-      })
-      .test('valid-local-part', getTranslation('Validations.invalidEmailFormat'), (value) => {
-        if (!value) return true;
-        const localPart = value.split('@')[0];
-        // Local part should have at least 1 character and can contain letters, numbers, dots, hyphens, underscores, plus signs, percent signs
-        return /^[a-zA-Z0-9._+%-]+$/.test(localPart) && localPart.length > 0;
-      })
-      .test('valid-domain', getTranslation('Validations.invalidDomainFormat'), (value) => {
-        if (!value) return true;
-        const parts = value.split('@');
-        if (parts.length !== 2) return false;
-        const domain = parts[1];
-        
-        // Domain must have at least one dot and proper structure
-        if (!domain.includes('.')) return false;
-        
-        // Domain parts separated by dots
-        const domainParts = domain.split('.');
-        
-        // Must have at least 2 parts (e.g., example.com)
-        if (domainParts.length < 2) return false;
-        
-        // Each part must be 1-63 characters and contain only alphanumeric and hyphens
-        for (let part of domainParts) {
-          if (part.length === 0 || part.length > 63) return false;
-          if (!/^[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?$/.test(part)) return false;
-        }
-        
-        // TLD must be at least 2 characters and contain only letters
-        const tld = domainParts[domainParts.length - 1];
-        if (!/^[a-zA-Z]{2,}$/.test(tld)) return false;
-        
-        return true;
-      })
-      .test('no-duplicate-tld', getTranslation('Validations.noDuplicateTld'), (value) => {
-        if (!value) return true;
-        const domain = value.split('@')[1];
-        if (!domain) return true;
-        
-        // Check for patterns like .com.com, .org.org, etc.
-        // Extract all TLDs (parts after dots that are only letters)
-        const tldMatches = domain.match(/\.([a-zA-Z]{2,})/g);
-        if (!tldMatches || tldMatches.length < 2) return true; // Valid if only one TLD
-        
-        // Check if there are any duplicate TLDs
-        const tlds = tldMatches.map(t => t.toLowerCase());
-        const uniqueTlds = new Set(tlds);
-        return tlds.length === uniqueTlds.size; // True if all TLDs are unique
-      })
-      .matches(generalEmailRegex, getTranslation('Validations.invalidEmailFormatFull')),
-    password: yup
-      .string()
-      .required(getTranslation('Validations.passwordRequired'))
-      .min(6, getTranslation('Validations.passwordGreaterThan6'))
-      .matches(/[!@#$%^&*(),.?":{}|<>]/, getTranslation('Validations.passwordSpecialChar'))
-      .matches(/[A-Z]/, getTranslation('Validations.passwordCapitalLetter'))
-      .matches(/[a-z]/, getTranslation('Validations.passwordLowercaseLetter'))
-      .matches(/^\S*$/, getTranslation('Validations.passwordNoSpaces'))
-      .matches(/[0-9]/, getTranslation('Validations.passwordNumber')),
-      
-      
-  
-  });
+ export const SignupSchema = yup.object().shape({
+  name: yup.string()
+    .required('Username is required')
+    .min(3, 'Username must be at least 3 characters')
+    .max(50, 'Username must be at most 50 characters')
+    .test('no-spaces', 'Username cannot contain spaces', (value) => {
+      if (!value) return true;
+      return !value.includes(' ');
+    })
+    .test('valid-characters', 'Username can only contain letters, numbers, hyphens, underscores, and periods', (value) => {
+      if (!value) return true;
+      return /^[a-zA-Z0-9\-_.]+$/.test(value);
+    }),
+  email: yup.string()
+    .required('Email is required')
+    .test('no-spaces', 'Email cannot contain spaces', (value) => {
+      if (!value) return true;
+      return !value.includes(' ');
+    })
+    .test('valid-format', 'Email must contain @', (value) => {
+      if (!value) return true;
+      return value.includes('@');
+    })
+    .test('single-at', 'Email can only contain one @', (value) => {
+      if (!value) return true;
+      return (value.match(/@/g) || []).length === 1;
+    })
+    .test('valid-local-part', 'Invalid email format', (value) => {
+      if (!value) return true;
+      const localPart = value.split('@')[0];
+      return /^[a-zA-Z0-9._+%-]+$/.test(localPart) && localPart.length > 0;
+    })
+    .test('valid-domain', 'Invalid domain format', (value) => {
+      if (!value) return true;
+      const parts = value.split('@');
+      if (parts.length !== 2) return false;
+      const domain = parts[1];
+      if (!domain.includes('.')) return false;
+      const domainParts = domain.split('.');
+      if (domainParts.length < 2) return false;
+      for (let part of domainParts) {
+        if (part.length === 0 || part.length > 63) return false;
+        if (!/^[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?$/.test(part)) return false;
+      }
+      const tld = domainParts[domainParts.length - 1];
+      if (!/^[a-zA-Z]{2,}$/.test(tld)) return false;
+      return true;
+    })
+    .test('no-duplicate-tld', 'Email contains duplicate domain extensions', (value) => {
+      if (!value) return true;
+      const domain = value.split('@')[1];
+      if (!domain) return true;
+      const tldMatches = domain.match(/\.([a-zA-Z]{2,})/g);
+      if (!tldMatches || tldMatches.length < 2) return true;
+      const tlds = tldMatches.map(t => t.toLowerCase());
+      const uniqueTlds = new Set(tlds);
+      return tlds.length === uniqueTlds.size;
+    })
+    .matches(generalEmailRegex, 'Invalid email format'),
+  password: yup.string()
+    .required('Password is required')
+    .min(6, 'Password must be at least 6 characters')
+    .matches(/[!@#$%^&*(),.?":{}|<>]/, 'Password must contain at least one special character')
+    .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
+    .matches(/[a-z]/, 'Password must contain at least one lowercase letter')
+    .matches(/^\S*$/, 'Password cannot contain spaces')
+    .matches(/[0-9]/, 'Password must contain at least one number'),
+});
 
   export const forgetpaswordSchema = yup.object().shape({
-    email: yup.string()
-      .required(getTranslation('Validations.emailRequired'))
-      .test('no-spaces', getTranslation('Validations.spacesNotAllowedEmail'), (value) => {
-        if (!value) return true;
-        return !value.includes(' ');
-      })
-      .test('valid-format', getTranslation('Validations.emailMustContainAt'), (value) => {
-        if (!value) return true;
-        return value.includes('@');
-      })
-      .test('single-at', getTranslation('Validations.emailOnlyOneAt'), (value) => {
-        if (!value) return true;
-        return (value.match(/@/g) || []).length === 1;
-      })
-      .test('valid-local-part', getTranslation('Validations.invalidEmailFormat'), (value) => {
-        if (!value) return true;
-        const localPart = value.split('@')[0];
-        // Local part should have at least 1 character and can contain letters, numbers, dots, hyphens, underscores, plus signs, percent signs
-        return /^[a-zA-Z0-9._+%-]+$/.test(localPart) && localPart.length > 0;
-      })
-      .test('valid-domain', getTranslation('Validations.invalidDomainFormat'), (value) => {
-        if (!value) return true;
-        const parts = value.split('@');
-        if (parts.length !== 2) return false;
-        const domain = parts[1];
-        
-        // Domain must have at least one dot and proper structure
-        if (!domain.includes('.')) return false;
-        
-        // Domain parts separated by dots
-        const domainParts = domain.split('.');
-        
-        // Must have at least 2 parts (e.g., example.com)
-        if (domainParts.length < 2) return false;
-        
-        // Each part must be 1-63 characters and contain only alphanumeric and hyphens
-        for (let part of domainParts) {
-          if (part.length === 0 || part.length > 63) return false;
-          if (!/^[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?$/.test(part)) return false;
-        }
-        
-        // TLD must be at least 2 characters and contain only letters
-        const tld = domainParts[domainParts.length - 1];
-        if (!/^[a-zA-Z]{2,}$/.test(tld)) return false;
-        
-        return true;
-      })
-      .test('no-duplicate-tld', getTranslation('Validations.noDuplicateTld'), (value) => {
-        if (!value) return true;
-        const domain = value.split('@')[1];
-        if (!domain) return true;
-        
-        // Check for patterns like .com.com, .org.org, etc.
-        // Extract all TLDs (parts after dots that are only letters)
-        const tldMatches = domain.match(/\.([a-zA-Z]{2,})/g);
-        if (!tldMatches || tldMatches.length < 2) return true; // Valid if only one TLD
-        
-        // Check if there are any duplicate TLDs
-        const tlds = tldMatches.map(t => t.toLowerCase());
-        const uniqueTlds = new Set(tlds);
-        return tlds.length === uniqueTlds.size; // True if all TLDs are unique
-      })
-      .matches(generalEmailRegex, getTranslation('Validations.invalidEmailFormatFull')),
-  });
+  email: yup.string()
+    .required('Email is required')
+    .test('no-spaces', 'Email cannot contain spaces', (value) => {
+      if (!value) return true;
+      return !value.includes(' ');
+    })
+    .test('valid-format', 'Email must contain @', (value) => {
+      if (!value) return true;
+      return value.includes('@');
+    })
+    .test('single-at', 'Email can only contain one @', (value) => {
+      if (!value) return true;
+      return (value.match(/@/g) || []).length === 1;
+    })
+    .test('valid-local-part', 'Invalid email format', (value) => {
+      if (!value) return true;
+      const localPart = value.split('@')[0];
+      return /^[a-zA-Z0-9._+%-]+$/.test(localPart) && localPart.length > 0;
+    })
+    .test('valid-domain', 'Invalid domain format', (value) => {
+      if (!value) return true;
+      const parts = value.split('@');
+      if (parts.length !== 2) return false;
+      const domain = parts[1];
+      if (!domain.includes('.')) return false;
+      const domainParts = domain.split('.');
+      if (domainParts.length < 2) return false;
+      for (let part of domainParts) {
+        if (part.length === 0 || part.length > 63) return false;
+        if (!/^[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?$/.test(part)) return false;
+      }
+      const tld = domainParts[domainParts.length - 1];
+      if (!/^[a-zA-Z]{2,}$/.test(tld)) return false;
+      return true;
+    })
+    .test('no-duplicate-tld', 'Email contains duplicate domain extensions', (value) => {
+      if (!value) return true;
+      const domain = value.split('@')[1];
+      if (!domain) return true;
+      const tldMatches = domain.match(/\.([a-zA-Z]{2,})/g);
+      if (!tldMatches || tldMatches.length < 2) return true;
+      const tlds = tldMatches.map(t => t.toLowerCase());
+      const uniqueTlds = new Set(tlds);
+      return tlds.length === uniqueTlds.size;
+    })
+    .matches(generalEmailRegex, 'Invalid email format'),
+});
 
 
   export const ResetPasswordSchema = yup.object().shape({

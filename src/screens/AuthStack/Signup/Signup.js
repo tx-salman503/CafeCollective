@@ -17,7 +17,6 @@ import { Routes } from '../../../navigation/Routes'
 import Orline from '../../../components/OrLine/OrLine'
 import AlreadyAccount from '../../../components/AlredyAccount/AlreadyAccount'
 import { moderateScale } from 'react-native-size-matters'
-import CheckBox from '@react-native-community/checkbox'
 import { useDispatch } from 'react-redux';
 import { dispatchisAuth } from '../../../redux/slices/userSlice';
 

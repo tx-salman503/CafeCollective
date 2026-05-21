@@ -17,17 +17,22 @@ import { Routes } from '../../../navigation/Routes'
 import Orline from '../../../components/OrLine/OrLine'
 import AlreadyAccount from '../../../components/AlredyAccount/AlreadyAccount'
 import { moderateScale } from 'react-native-size-matters'
+import { useDispatch } from 'react-redux'
+import { dispatchisAuth } from '../../../redux/slices/userSlice'
 
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false)
   const navigation = useNavigation()
-  const { t } = useTranslation()
+ const dispatch=useDispatch();
 
 
   const handleSignupSubmit = (values) => {
-    console.log('Signup values:', values)
-    navigation.navigate(Routes.VerifyOtp)
+      dispatch(dispatchisAuth(true))
+       navigation.reset({
+         index: 0,
+         routes: [{ name: Routes.UnAuthStack }],
+       });
   }
 
   return (
@@ -62,7 +67,7 @@ const SignIn = () => {
             <View>
 
               <NativeInput
-                label={t('Signup.emailLabel') || 'Email'}
+                label={'Email'}
                 placeholder={'your@email.com'}
                 value={values.email}
                 onChangeText={handleChange('email')}
@@ -73,7 +78,7 @@ const SignIn = () => {
               />
 
               <NativeInput
-                label={t('Signup.passwordLabel') || 'Password'}
+                label={'Password'}
                 placeholder={'Enter your password'}
                 secureTextEntry={!showPassword}
                 value={values.password}
@@ -98,11 +103,6 @@ const SignIn = () => {
                 isBtn={true}
                 touchable={true}
                 onPress={() => {
-                  if (!isChecked) {
-                    setCheckboxError(true)
-                    return
-                  }
-                  setCheckboxError(false)
                   handleSubmit()
                 }}
                 containerStyle={styles.btnContainer}

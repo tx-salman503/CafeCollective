@@ -115,9 +115,9 @@
         </View>
 
         {/* Error text */}
-        <NativeText style={[styles.errorText, !errorText && { opacity: 0 }]}>
-          {errorText || ' '}
-        </NativeText>
+        <NativeText style={[styles.errorText, !errorText && { opacity: 0 }]} value={errorText}/>
+          
+       
       </View>
     );
   });

@@ -1,32 +1,59 @@
 import { View, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import SafeFlexView from '../../SafeFlexView/SafeFlexView'
 import { styles } from './style'
 import NativeText from '../../AppTexts/NativeText'
 import combineStyle from '../../../libs/combineStyle'
-import { fork, star, GoldenStar, clock, dollerSign, car, cycle, ArrowRightSvg } from '../../../assets/Svgs'
+import { fork, clock, dollerSign, car, cycle, ArrowRightSvg } from '../../../assets/Svgs'
 import { SvgXml } from 'react-native-svg'
 import RadioSelector from '../../RadioSelector/RadioSelector'
 import MessageCard from '../../MessageCard/MessageCard'
 import { moderateScale } from 'react-native-size-matters'
-import { useDispatch, useSelector } from 'react-redux'
-import { dispatchOnboardingAccessibilityValue } from '../../../redux/slices/CafeOnboardingSlice'
+import DatePicker from 'react-native-date-picker'
 
-const AccessibilityValue = ({ onNext, }) => {
+const REFERENCE_MONDAY = new Date(2024, 0, 1)
+
+const snapToReferenceWeek = (date) => {
+  const dayOfWeek = date.getDay()
+  const mondayBasedOffset = (dayOfWeek + 6) % 7
+  const snapped = new Date(REFERENCE_MONDAY)
+  snapped.setDate(REFERENCE_MONDAY.getDate() + mondayBasedOffset)
+  snapped.setHours(date.getHours(), date.getMinutes(), 0, 0)
+  return snapped
+}
+
+const formatTime = (date) => {
+  if (!date) return null
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const day = days[date.getDay()]
+  let hours = date.getHours()
+  const minutes = date.getMinutes().toString().padStart(2, '0')
+  const ampm = hours >= 12 ? 'PM' : 'AM'
+  hours = hours % 12 || 12
+  const hh = hours.toString().padStart(2, '0')
+  return `${day} ${hh}:${minutes} ${ampm}`
+}
+
+const AccessibilityValue = ({ onNext, mode }) => {
 
   const [correctAnswer, setCorrectAnswer] = useState(null)
-      const {OnboardingAccessibilityValueType}=useSelector(state=>state.cafeReducer)
-const disptch=useDispatch()
+  const [startTime, setStartTime] = useState(null)
+  const [endTime, setEndTime] = useState(null)
+  const [showStartPicker, setShowStartPicker] = useState(false)
+  const [showEndPicker, setShowEndPicker] = useState(false)
+
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
+
         <View style={styles.textContainer}>
-          {OnboardingAccessibilityValueType ? (
-            <NativeText value={'Accessibility & Value'} style={combineStyle.text28Bold} />
-          ) : (
-            <NativeText value={'Edit Accessibility & Value'} style={combineStyle.text28Bold} />
-          )}
-          <NativeText value={'Find cafes that are convenient and afforable'} style={combineStyle.text14Regular} />
+          <NativeText
+            value={mode === 'new' ? 'Accessibility & Value' : 'Edit Accessibility & Value'}
+            style={[combineStyle.text28Bold, { textAlign: 'center' }]}
+          />
+          <NativeText
+            value={'Find cafes that are convenient and afforable'}
+            style={[combineStyle.text14Regular, { textAlign: 'center' }]}
+          />
         </View>
 
         <View style={styles.card}>
@@ -34,9 +61,13 @@ const disptch=useDispatch()
             <SvgXml xml={fork} width={moderateScale(20)} height={moderateScale(20)} />
             <NativeText value={'Hours of Service'} style={combineStyle.text18Bold} />
           </View>
+
           {correctAnswer === 'yes' ? (
             <>
-              <NativeText value="Auto-populated from Google" style={[combineStyle.text14Regular, styles.cardTitle]} />
+              <NativeText
+                value="Auto-populated from Google"
+                style={[combineStyle.text14Regular, styles.cardTitle]}
+              />
               <View style={styles.badge}>
                 <SvgXml xml={clock} width={moderateScale(24)} height={moderateScale(24)} />
                 <NativeText value="Mon-Fri: 7 AM - 8 PM" style={combineStyle.text16Mid} />
@@ -44,17 +75,53 @@ const disptch=useDispatch()
             </>
           ) : (
             <>
-              <NativeText value="Add the correct hours of service " style={[combineStyle.text14Regular, styles.cardTitle]} />
-              <View style={styles.badge}>
+              <NativeText
+                value="Add the correct hours of service"
+                style={[combineStyle.text14Regular, styles.cardTitle]}
+              />
+
+              <TouchableOpacity style={styles.badge} onPress={() => setShowStartPicker(true)}>
                 <SvgXml xml={clock} width={moderateScale(24)} height={moderateScale(24)} />
-                <NativeText value="Start Time   07:00 AM" style={combineStyle.text16Mid} />
-              </View>
-              <View style={styles.badge}>
+                <NativeText
+                  value={startTime ? formatTime(startTime) : 'Start Time'}
+                  style={combineStyle.text16Mid}
+                />
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.badge} onPress={() => setShowEndPicker(true)}>
                 <SvgXml xml={clock} width={moderateScale(24)} height={moderateScale(24)} />
-                <NativeText value="End Time   09:00 PM" style={combineStyle.text16Mid} />
-              </View>
+                <NativeText
+                  value={endTime ? formatTime(endTime) : 'End Time'}
+                  style={combineStyle.text16Mid}
+                />
+              </TouchableOpacity>
             </>
           )}
+
+          <DatePicker
+            modal
+            open={showStartPicker}
+            date={startTime ?? new Date()}
+            mode="datetime"
+            onConfirm={(date) => {
+              setShowStartPicker(false)
+              setStartTime(snapToReferenceWeek(date))
+            }}
+            onCancel={() => setShowStartPicker(false)}
+          />
+
+          <DatePicker
+            modal
+            open={showEndPicker}
+            date={endTime ?? new Date()}
+            mode="datetime"
+            onConfirm={(date) => {
+              setShowEndPicker(false)
+              setEndTime(snapToReferenceWeek(date))
+            }}
+            onCancel={() => setShowEndPicker(false)}
+          />
+
           <View style={styles.questionContainer}>
             <View style={styles.menuHeader}>
               <SvgXml xml={clock} width={moderateScale(20)} height={moderateScale(20)} />
@@ -112,10 +179,13 @@ const disptch=useDispatch()
         <MessageCard
           touchable={true}
           isBtn={true}
-          text={OnboardingAccessibilityValueType ? 'Next' : 'Save'}
-          onPress={OnboardingAccessibilityValueType ? ()=>{onNext,disptch(dispatchOnboardingAccessibilityValue(false))} : () => { console.error("Save") }}
+          text={mode === 'new' ? 'Next' : 'Save'}
           svg={ArrowRightSvg}
+          onPress={mode === 'new'
+            ? () => { onNext() }
+            : () => { console.log('Save AccessibilityValue') }}
         />
+
       </View>
     </View>
   )

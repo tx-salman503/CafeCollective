@@ -26,7 +26,10 @@ export const Routes = {
   EditProfile:"EditProfile",
   MyInvitations:"MyInvitations",
   CafeDetail:"CafeDetail",
-  EditCafeDetail:"EditCafeDetail"
+  EditCafeDetail:"EditCafeDetail",
+  AchievementBadgeScreen:"AchievementBadgeScreen",
+  RedeemReferral:"RedeemReferral",
+  ReferalReward:"ReferalReward"
 
 
 

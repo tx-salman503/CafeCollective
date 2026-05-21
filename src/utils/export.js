@@ -97,7 +97,7 @@ export const CAFE_DATA = [
 
 export const HomeScreenData = [
   { id: 1, svg: filterSvg, text: "Filter" },
-  { id: 2, svg: CofeeSvg, text: "Cofee" },
+  { id: 2, svg: CofeeSvg, text: "Coffee" },
   { id: 4, svg: LaptopSvg, text: "Work Friendly" },
   { id: 5, svg: wifiIcon, text: "Wifi" },
 

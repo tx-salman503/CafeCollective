@@ -1,6 +1,5 @@
-import { Image, TouchableOpacity, View, ScrollView, StyleSheet } from 'react-native'
+import { Image, TouchableOpacity, View, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import { styles } from './style'
 import NativeText from '../../AppTexts/NativeText'
 import combineStyle from '../../../libs/combineStyle'
@@ -13,20 +12,15 @@ import { SvgXml } from 'react-native-svg'
 import { moderateScale } from 'react-native-size-matters'
 import { images } from '../../../assets/images'
 import { Theme } from '../../../libs'
-import { dispatchOnboardingComfortEnvirment } from '../../../redux/slices/CafeOnboardingSlice'
-
 
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
-const ComfortEnvirment = ({ onNext }) => {
+const ComfortEnvirment = ({ onNext, mode }) => {
 
   const [wifiIndex, setWifiIndex] = useState(1)
   const [crowd, setCrowd] = useState('Balanced')
   const [foodRating, setFoodRating] = useState(0)
   const [selectedDay, setSelectedDay] = useState('Monday')
-
-  const { OnboardingComfortEnvirmentType } = useSelector(state => state.cafeReducer)
-  const dispatch = useDispatch()
 
   const EmojiArray = [images.Angery, images.Mid, images.Smile, images.Excited]
 
@@ -76,12 +70,14 @@ const ComfortEnvirment = ({ onNext }) => {
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          {OnboardingComfortEnvirmentType ? (
-            <NativeText value={'Comfort & Environment'} style={combineStyle.text28Bold} />
-          ) : (
-            <NativeText value={'Edit Comfort & Environment'} style={combineStyle.text28Bold} />
-          )}
-          <NativeText value={'Find cafes that are comfortable, quit and relaxing.'} style={combineStyle.text14Regular} />
+          <NativeText
+            value={mode === 'new' ? 'Comfort & Environment' : 'Edit Comfort & Environment'}
+            style={[combineStyle.text28Bold, { textAlign: 'center' }]}
+          />
+          <NativeText
+            value={'Find cafes that are comfortable, quit and relaxing.'}
+            style={combineStyle.text14Regular}
+          />
         </View>
 
         <RadioSelector
@@ -151,10 +147,12 @@ const ComfortEnvirment = ({ onNext }) => {
           <MessageCard
             touchable={true}
             isBtn={true}
-            text={OnboardingComfortEnvirmentType ? 'Next' : 'Save'}
-            onPress={OnboardingComfortEnvirmentType ? () => { onNext(); dispatch(dispatchOnboardingComfortEnvirment(true)); } : () => { console.error("Saved") }}
-            containerStyle={{ marginTop: moderateScale(15) }}
+            text={mode === 'new' ? 'Next' : 'Save'}
             svg={ArrowRightSvg}
+            containerStyle={{ marginTop: moderateScale(15) }}
+            onPress={mode === 'new'
+              ? () => { onNext(); }
+              : () => { console.log('Save ComfortEnvirment'); }}
           />
         </View>
       </View>

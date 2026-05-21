@@ -1,27 +1,20 @@
-import { Image, TouchableOpacity, View } from 'react-native'
+import { View } from 'react-native'
 import React, { useState } from 'react'
 import { styles } from './style'
 import NativeText from '../../AppTexts/NativeText'
 import combineStyle from '../../../libs/combineStyle'
-import { clock, emojiFace, GoldenStar, mice, speaker, star, crowd1, AngrySvg, MidSvg, smileSvg, existingSvg, dinner, Blub, heart, BestLife, ArrowRightSvg } from '../../../assets/Svgs'
+import { Blub, heart, BestLife, ArrowRightSvg } from '../../../assets/Svgs'
 import RadioSelector from '../../RadioSelector/RadioSelector'
 import MessageCard from '../../MessageCard/MessageCard'
-import QualityStatusCard from '../../QualityStatusCard/QualityStatusCard'
 import PowerOutletsAvailability from '../../PowerOutletsAvailability/PowerOutletsAvailability'
-import { SvgXml } from 'react-native-svg'
 import { moderateScale } from 'react-native-size-matters'
-import { images } from '../../../assets/images'
 import StandoutFeatures from '../../StandOutFeacture/StandOutFeacture'
-import { dispatchOnboardingAsthetice } from '../../../redux/slices/CafeOnboardingSlice'
-import { useDispatch, useSelector } from 'react-redux'
 
-const AstheticVibe = ({ onNext,  }) => {
+const AstheticVibe = ({ onNext, mode }) => {
 
     const [styleVal, setstyleVal] = useState(1)
     const [lighting, setLighting] = useState("Bright")
     const [selected, setSelected] = useState([])
-    const { OnboardingAstheticVibeType } = useSelector(state => state.cafeReducer)
-    const disptch = useDispatch()
 
     const FEATURE_OPTIONS = [
         'Cozy & intimate',
@@ -44,12 +37,14 @@ const AstheticVibe = ({ onNext,  }) => {
         <View style={{ flex: 1 }}>
             <View style={styles.container}>
                 <View style={styles.textContainer}>
-                    {OnboardingAstheticVibeType ? (
-                        <NativeText value={'Aesthetic / Vibe'} style={combineStyle.text28Bold} />
-                    ) : (
-                        <NativeText value={'Edit Aesthetic / Vibe'} style={combineStyle.text28Bold} />
-                    )}
-                    <NativeText value={'Find cafes that feel right for your mood and style,'} style={combineStyle.text14Regular} />
+                    <NativeText
+                        value={mode === 'new' ? 'Aesthetic / Vibe' : 'Edit Aesthetic / Vibe'}
+                        style={[combineStyle.text28Bold, { textAlign: 'center' }]}
+                    />
+                    <NativeText
+                        value={'Find cafes that feel right for your mood and style,'}
+                        style={[combineStyle.text14Regular, { textAlign: 'center' }]}
+                    />
                 </View>
 
                 <PowerOutletsAvailability
@@ -87,11 +82,12 @@ const AstheticVibe = ({ onNext,  }) => {
                 <MessageCard
                     touchable={true}
                     isBtn={true}
-                    text={OnboardingAstheticVibeType ? 'Next' : 'Save'}
-                    onPress={OnboardingAstheticVibeType ?()=>{onNext,disptch(dispatchOnboardingAsthetice(false))} : () => { console.error("Save") }}
+                    text={mode === 'new' ? 'Next' : 'Save'}
                     containerStyle={{ marginTop: moderateScale(15) }}
                     svg={ArrowRightSvg}
-                    
+                    onPress={mode === 'new'
+                        ? () => { onNext(); }
+                        : () => { console.log('Save AstheticVibe'); }}
                 />
             </View>
         </View>

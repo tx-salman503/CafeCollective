@@ -1,6 +1,6 @@
 import { View } from 'react-native'
 import React from 'react'
-import { SafeFlexView, Workability} from '../../../components'
+import { SafeFlexView, Workability } from '../../../components'
 import BackBtnHeader from '../../../components/AppHeaders/BackBtnHeader'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { styles } from './style'
@@ -10,47 +10,33 @@ import AccessibilityValue from '../../../components/OnBoardingCafeDiscovery/Acce
 import ComfortEnvirment from '../../../components/OnBoardingCafeDiscovery/ComfortEnvirment/ComfortEnvirment'
 import AstheticVibe from '../../../components/OnBoardingCafeDiscovery/AestheticVibe/AestheticVibe'
 
-
-
 const EditCafeDetail = ({ route, navigation }) => {
 
-    const { type } = route.params || {};
+    const { type } = route.params || {}
 
-  console.log("TYPE RECEIVED:", type);
+    console.log("TYPE RECEIVED:", type)
 
-  const renderContent = () => {
-    switch (type) {
-      case "workability":
-        return (
-         <Workability/>
-        );
+    const renderContent = () => {
+        switch (type) {
+            case "workability":
+                return <Workability mode="edit" />
 
-      case "CafeeFood":
-        return (
-          <CafeeFood/>
-        );
+            case "CafeeFood":
+                return <CafeeFood mode="edit" />
 
-      case "accessibilityValue":
-        return (
-          <AccessibilityValue/>
-        );
+            case "accessibilityValue":
+                return <AccessibilityValue mode="edit" />
 
-      case "comfortEnvirment":
-        return (
-          <ComfortEnvirment/>
-        );
+            case "comfortEnvirment":
+                return <ComfortEnvirment mode="edit" />
 
-      case "astheticVibe":
-        return (
-          <AstheticVibe/>
-        );
+            case "astheticVibe":
+                return <AstheticVibe mode="edit" />
 
-      default:
-        return (
-          <NativeText value="No Section Selected" />
-        );
+            default:
+                return <NativeText value="No Section Selected" />
+        }
     }
-  };
 
     return (
         <SafeFlexView>
@@ -63,7 +49,7 @@ const EditCafeDetail = ({ route, navigation }) => {
                 extraScrollHeight={80}
                 keyboardShouldPersistTaps="handled"
             >
-                {renderContent ()}
+                {renderContent()}
             </KeyboardAwareScrollView>
         </SafeFlexView>
     )

@@ -16,15 +16,18 @@ import EditProfile from '../screens/UnAuthStack/EditProfile/EditProfile';
 import MyInvitations from '../screens/UnAuthStack/MyInvitations/MyInvitations';
 import CafeDetail from '../screens/UnAuthStack/CafeDetail/CafeDetail';
 import EditCafeDetail from '../screens/UnAuthStack/EditCafeDetail/EditCafeDetail';
+import AchievementBadgeScreen from '../screens/UnAuthStack/AchievementBadgeScreen/AchievementBadgeScreen';
+import RedeemReferral from '../screens/UnAuthStack/RedeemReferral/RedeemReferral';
+import ReferalReward from '../screens/UnAuthStack/ReferalReward/ReferalReward';
 export default function UnAuthStack() {
   const Stack = createNativeStackNavigator();
 
-  const {setOnboardingCafeDiscovery} =useSelector(state=>state.userReducer);
-  console.log("setOnboardingCafeDiscovery",setOnboardingCafeDiscovery)
+  const {onboardingCafeDiscovery} =useSelector(state=>state.userReducer);
+ 
 
   return (
     <Stack.Navigator
-    initialRouteName={setOnboardingCafeDiscovery?Routes.BottomStack:Routes.LocationAccessScreen}
+    initialRouteName={onboardingCafeDiscovery?Routes.BottomStack:Routes.LocationAccessScreen}
       screenOptions={{
         headerShown: false,
         orientation: 'default',
@@ -44,6 +47,9 @@ export default function UnAuthStack() {
       <Stack.Screen name={Routes.MyInvitations} component={MyInvitations} />
       <Stack.Screen name={Routes.CafeDetail} component={CafeDetail} />
       <Stack.Screen name={Routes.EditCafeDetail} component={EditCafeDetail} />
+      <Stack.Screen name={Routes.AchievementBadgeScreen} component={AchievementBadgeScreen} />
+      <Stack.Screen name={Routes.RedeemReferral} component={RedeemReferral} />
+      <Stack.Screen name={Routes.ReferalReward} component={ReferalReward} />
 
     </Stack.Navigator>
   );

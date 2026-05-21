@@ -17,6 +17,7 @@ const NativeButton = ({
   title2Style,
   disabled = false,
   LeftIcon,
+  RightIcon,
   AlbumIcon,
   isPending
 }) => {
@@ -41,6 +42,11 @@ const NativeButton = ({
           <AppLoader />
         ) : (
           <Text style={[styles.buttonText, titleStyle]}>{title}</Text>
+        )}
+
+
+        {RightIcon && (
+          <SvgXml xml={RightIcon} width={moderateScale(16)} height={moderateScale(16)}/>
         )}
 
         {title2 && (

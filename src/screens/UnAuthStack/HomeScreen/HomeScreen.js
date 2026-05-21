@@ -47,7 +47,7 @@ const HomeScreen = ({navigation}) => {
       <NativeButton
         title="Discover this Cafe"
         containerStyle={styles.button}
-        onPress={() => {}}
+        onPress={() => {navigation.navigate(Routes.OnboardingCafeDiscovery)}}
         titleStyle={{ ...combineStyle.text16Bold, color: Theme.colors.black }}
       />
     </View>

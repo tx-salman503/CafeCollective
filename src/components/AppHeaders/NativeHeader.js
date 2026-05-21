@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native'
 import combineStyle from '../../libs/combineStyle'
 
 
-function NativeHeader({ title, back = false,isoBorder=false }) {
+function NativeHeader({ title, back = false,isoBorder=false ,onback}) {
   const navigation = useNavigation()
 
   return (
@@ -18,7 +18,7 @@ function NativeHeader({ title, back = false,isoBorder=false }) {
         <TouchableOpacity
           activeOpacity={0.7}
           hitSlop={10}
-          onPress={() => navigation.goBack()}
+        onPress={() => { onback ? onback() : navigation.goBack(); }}
           style={styles.backButton}
         >
           <SvgXml xml={backBlack} width={48} height={48} />
